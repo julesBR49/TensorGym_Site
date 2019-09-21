@@ -1,0 +1,73 @@
+{% extends "tensorgym/base.html" %} {% block content %}
+<h1>TensorGym</h1>
+
+<h2>
+    Multiply
+</h2>
+
+<h4>
+    <button type="button">Click Here</button> FOIL out terms, distributing derivatives when necessary (recommended)
+</h4>
+<h4>
+    <button type="button">Click Here</button> distribute partial derivatives
+</h4>
+<h4>
+    <button type="button">Click Here</button> FOIL out terms without distributing derivatives
+</h4>
+
+<h2>
+    Contract
+</h2>
+
+<h4>
+    <button type="button">Click Here</button> contract etas and deltas
+</h4>
+<h4>
+    <button type="button">Click Here</button> contract only deltas
+</h4>
+<h4>
+    <button type="button">Click Here</button> contract only etas
+</h4>
+
+<h2>
+    Factor
+</h2>
+
+<h4>
+    <button type="button">Click Here</button> factor out GCF
+</h4>
+<h4>
+    <button type="button">Click Here</button> factor out user specified term <input type="text" name="user_specified_term" size="40" placeholder="term to factor"><br>
+</h4>
+
+<h2>
+    Replace
+</h2>
+
+<h4>
+    <button type="button">Click Here</button> replace indices
+    <input type="text" name="indices_to_replace" size="30" placeholder="indices to replace, list">
+    <input type="text" name="replacement_indices" size="30" placeholder="replacement indices, list"><br>
+</h4>
+<h4>
+    <button type="button">Click Here</button> replace terms
+    <input type="text" name="term_to_replace" size="30" placeholder="term to replace">
+    <input type="text" name="replacement_term" size="30" placeholder="replacement term"><br>
+</h4>
+
+<h2>
+    Sort
+</h2>
+
+<h4>
+    <button type="button">Click Here</button> combine like terms differing only by a numerical factor
+</h4>
+<h4>
+    <button type="button">Click Here</button> combine like terms differing by any (numerical or symbolic) coefficient
+</h4>
+<h4>
+    <button type="button">Click Here</button> sort the tensors in each term by number of derivatives (least to greatest)
+</h4>
+<h4>
+    <button type="button">Click Here</button> sort terms by number of derivatives (least to greatest)
+</h4>{% endblock content %}

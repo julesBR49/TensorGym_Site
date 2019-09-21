@@ -1,0 +1,249 @@
+{% extends "tensorgym/base.html" %} {% block content %}
+<h1>About TensorGym</h1>
+
+<h2>Input Specifications</h2>
+
+<p>
+    Please paste the following into the header of your LaTeX document to get accurate formatting:
+    <br>
+    <br>\def\partialv{\partial}
+    <br>\def\deltav{\delta}
+    <br>\def\){\Big)}
+    <br>\def\({\Big(}
+    <br>
+    <br>In terms of writing your LaTeX equations, the program only requires three changes to normal LaTeX syntax:
+    <br>
+    <ol>
+        <li>
+            MULTIPLYING WITH BRACKETS: if brackets specify multiplication, they must be written as “\(“ and “\)” (eg. “\(A+B\) \(T^{\gamma \tau} + C \)” )
+        </li>
+        <br>
+        <li>
+            VARIATIONS: when using a \delta or \partial to specify the type of variation being taken, this \delta or \partial must be written as \deltav or \partialv and the top and bottom of the variation must be enclosed in normal brackets “()” (eg. write a variation
+            as “\frac{\deltav (A^{\mu})}{ \deltav (A^{nu} )}” or “\frac{\partialv (A^{\mu})}{ \partialv (A^{nu} )}” )
+        </li>
+        <br>
+        <li>
+            ZEROTH RANK TENSORS: any zeroth rank tensors must be written as Symbol^{} or Symbol_{} (eg. “T^{}” or “T_{}”), otherwise they will be treated as symbolic coefficients
+        </li>
+    </ol>
+    Make these three changes to how you format your LaTeX and you can copy and paste your equations straight from your TeX document to the TensorGym and back again.
+    <br>EXTRA NOTES:
+    <ul type="circle">
+        <li> input any lists (symmetric tensors, indices) with
+            <i>elements separated by commas</i>
+        </li>
+        <br>
+        <li>
+            partial derivatives will automatically attach to the tensor that follows them – if you want to take the partial derivative of more than one tensor, please use brackets (eg. “ \partial_{\xi} \( T^{\kappa} B_{\gamma} \)”). Covariant derivatives are not
+            supported at this time.
+        </li>
+        <br>
+        <li>
+            if you include the “\begin{Equation}” or “\begin{Multline}” and “\end{Equation}” or “\end{Multline}” in the input box, these commands will be included in the output equations as well
+        </li>
+        <br>
+        <li>
+            make sure your syntax is free of mistakes <i>and all opening brackets have a matching closing bracket </i>
+        </li>
+    </ul>
+</p>
+
+<h2>
+    Input Customization
+</h2>
+<p>
+    <ul type="circle">
+        <li>
+            include initial equation in output
+            <p>
+                the first equation in the output box will be the initial equation, followed by the altered equations
+            </p>
+        </li>
+        <br>
+        <li>
+            include short description in output
+            <p>
+                each output equation will be preceded by a sentence describing what action was taken to arrive at this equation
+            </p>
+        </li>
+        <br>
+        <li>
+            symmetric tensors
+            <p>
+                if your equation includes symmetric tensors, you can input a comma-separated list of the symbols used for your symmetric tensor (for instance ‘h, T, b’) and tensors with this symbol will be recognized as symmetric in any calculations. Note that at this
+                time, only fully symmetric tensors are recognized.
+            </p>
+        </li>
+    </ul>
+</p>
+
+<h2>
+    Multiply
+</h2>
+<p>
+    <ul type="circle">
+        <li>
+            FOIL out terms, distributing derivatives when necessary (recommended)
+            <p>
+                this method will multiply out all terms in the input equation, first using the product rule to distribute the partial derivative(s) on any term under partial derivative(s). It is recommended since it allows terms to be multiplied and partials to be distributed
+                in a logical order to make sure all terms are dealt with
+            </p>
+        </li>
+        <br>
+        <li>
+            distribute partial derivatives
+            <p>
+                this method will distribute partial derivative(s), using the calculus product and sum rules, on any term that is a multiplication of Tensors and constants, or a sum of multiplications of tensors and constants
+            </p>
+        </li>
+        <br>
+        <li>
+            FOIL out terms without distributing derivatives
+            <p>
+                This method will multiply out any terms which are not under (a) partial derivative(s); however some terms may be inaccessible to multiplication, due to placement of partial derivatives
+                <br>*** note that this method may rearrange your equation to access terms
+
+            </p>
+        </li>
+    </ul>
+</p>
+
+<h2>
+    Contract
+</h2>
+<p>
+    <ul type="circle">
+        <li>
+            contract etas and deltas
+            <p>
+                this method contracts each (contractible) eta or delta in each term in the equation. Deltas and etas may be contracted with: other deltas or etas, partial derivatives, tensors, or variations
+            </p>
+        </li>
+        <br>
+        <li>
+            contract only deltas
+            <p>
+                this method contracts each (contractible) delta in each term in the equation. Deltas may be contracted with: other deltas, etas, partial derivatives, tensors, or variations
+            </p>
+        </li>
+        <br>
+        <li>
+            contract only etas
+            <p>
+                this method contracts each (contractible) eta in each term in the equation. Etas may be contracted with: other etas, deltas, partial derivatives, tensors, or variations
+            </p>
+        </li>
+    </ul>
+    *** note that deltas and etas will only be contracted with other tensors within a (multiplication) term they are a part of, but will NOT be multiplied through a term before contracting. Please use the FOIL method to achieve this ***
+</p>
+
+<h2>
+    Factor
+</h2>
+
+<p>
+    <ul type="circle">
+        <li>
+            factor out GCF
+            <p>
+                this method will factor out any term that is exactly common to all terms (terms meaning multiplied groups of tensors separated by a plus/ minus sign) inside a set of brackets. In the case of numbers/ fractions, the method will also factor out a numbers
+                if it divides nicely into each term
+            </p>
+        </li>
+        <br>
+        <li>
+            factor out user specified term
+            <p>
+                this method will factor a given input term (inputted using the same specifications as for the initial equation) out of any terms ( terms meaning multiplied groups of tensors separated by a plus/ minus sign) which include an exact copy of this term. For
+                example ‘h^{\alpha \beta}’ will be factored out of ‘\eta_{\gamma \omega} h^{\lambda}_{\lambda} h^{\alpha \beta}’; however ‘h^{\alpha \omega}’ will not be factored out since it does not have an exact match in the term
+            </p>
+        </li>
+        <br>
+    </ul>
+</p>
+
+<h2>
+    Replace
+</h2>
+
+<p>
+    <ul type="circle">
+        <li>
+            replace indices
+            <p>
+                this method will replace indices with the any indices with symbols matching those in the ‘indices to replace’ list by indices with symbols matching those in the ‘replacement indices’ list. If length is greater than 1, symbols will be matched by position,
+                for example given: indices to replace = \tau, \gamma; replacement indices = \xi, \kappa, τ will be replaced with ξ and γ will be replaced with κ. Overlap between the two lists is allowed, for example, one could swap two indices by inputting:
+                indices to replace = \tau, \gamma; replacement indices = \gamma, \tau
+                <br><i>***please input indices as a <b>comma-separated</b> list. The lengths of each list MUST MATCH</i>
+
+            </p>
+        </li>
+        <br>
+        <li>
+            replace terms
+            <p>
+                this method will find all instances of the ‘term to replace’ in the input equation and replace each with the ‘replacement term’. This method will replace tensors, variations, or terms which are an exact replica of those in the input equation (for eg.
+                given the input term ‘\delta^{\gamma}_{\tau} \eta^{\mu \nu} \partial_{gamma} T_{\alpha \nu}’ one could replace ‘T_{\alpha \nu}’, ‘\partial_{gamma} T_{\alpha \nu}’, or the whole term, but one could not replace just one portion of the term
+                such as ‘\eta^{\mu \nu} \partial_{gamma} T_{\alpha \nu}’.) This method replaces indices by pattern not exact match, i.e. given the input term ‘\delta^{\gamma}_{\tau} \eta^{\mu \nu} \partial_{gamma} T_{\alpha \nu}’ one could set term to
+                replace = T^{\xi \kappa} and replacement term = T^{\xi \kappa} + \partial^{\xi} S^{\kappa} and the output would be ‘\delta^{\gamma}_{\tau} \eta^{\mu \nu} \partial_{gamma} \( T_{\alpha \nu} + \partial_{\alpha} S_{\nu} \)’
+                <br>*** <i>please input terms using the same LaTeX conventions as for the input equation (see ‘input specifications)</i>
+
+            </p>
+        </li>
+    </ul>
+</p>
+
+<h2>
+    Sort
+</h2>
+<p>
+    <ul type="circle">
+        <li>
+            combine like terms differing only by a numerical factor
+            <p>
+                this method will combine any terms that exactly match apart from a numerical factor. For example, ‘4AT^{\alpha} + 3AT^{\alpha}’ will be combined into ‘7AT^{\alpha}’, but ‘4AT^{\alpha} + 3BT^{\alpha}’ will not be combined
+            </p>
+        </li>
+        <br>
+        <li>
+            combine like terms differing by any (numerical or symbolic) coefficient
+            <p>
+                this method will combine any terms which only differ by a constant factor. For example, ‘4AT^{\alpha} + 3BT^{\alpha}’ will be combined into ‘\(4A + 3B\) T^{\alpha}’
+            </p>
+        </li>
+        <br>
+        <li>
+            sort the tensors in each term by number of derivatives (least to greatest)
+            <p>
+                this method will sort the tensors within each term (terms meaning multiplied groups of tensors separated by a plus/ minus sign or brackets), without rearranging the order of terms. The tensors are sorted from tensors with the least number of partial derivatives
+                to the most, for example an input term ‘\frac{1}{4} A \delta^{\gamma}_{\rho} \partial_{\xi} T^{\rho \omega} L^{} \square C_{\kappa}’ would be sorted to become ‘\frac{1}{4} A \delta_{\rho}^{\gamma} L^{} \partial_{\xi}T^{\rho \omega} \square
+                C_{\kappa}’
+            </p>
+        </li>
+        <br>
+        <li>
+            sort terms by number of derivatives (least to greatest)
+            <p>
+                this method will sort each term (terms meaning multiplied groups of tensors separated by a plus/ minus sign or brackets) from terms with tensors with the least number of derivatives to terms with tensors with the most. For example, given the input term
+                ‘ \partial_{\omega} A^{\alpha \omega} + A_{\alpha \omega} + A^{\omega \alpha} \partial_{\omega} \partial_{\alpha} B^{\xi}_{\xi}’ would be sorted to become ‘ A_{\alpha \omega} + A^{\omega \alpha} \partial_{\omega} \partial_{\alpha} B^{\xi}_{\xi}
+                + ‘ \partial_{\omega} A^{\alpha \omega}’
+            </p>
+        </li>
+    </ul>
+</p>
+
+<h2>
+    The Output Box
+</h2>
+<p>
+    The output box will hold your LaTeX-formatted final equation. If you’ve clicked on more than one action (i.e. multiply, contract, then sort), it will also show the intermediate equations after each step. If you click ‘include initial equation in output’,
+    the first equation in the output box will be the initial equation. If you click ‘include short description in output’, each output equation will be preceded by a sentence describing what action was taken to arrive at this equation. If you include
+    the “\begin{Equation}” or “\begin{Multline}” and “\end{Equation}” or “\end{Multline}” in the input box, these commands will be included in the output equations.
+</p>
+
+<p>
+    More questions? No problem, just send an email to jbrucero@uwo.ca
+</p>
+
+{% endblock content %}
