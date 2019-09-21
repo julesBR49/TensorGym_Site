@@ -3,23 +3,25 @@
 
 <h2>Input</h2>
 
-<form action="equation" method="post">
-    <p><label for="equation">Input Equation </label>
-        <input id="equation" type="text" size="100" name="equation">
+<form action="/" method="post">
+    {% csrf_token %}
+    <p><label for="equation">Input Equation </label> {{ form.equation }}
     </p>
     <h3>
         Multiply
     </h3>
     <p>
-        <input id="foil" type="checkbox" name="foil">
+        {{ form.foil }}
         <label for="foil">FOIL out terms, distributing derivatives when necessary (recommended)</label>
-        <br><input id="distribute_partials" type="checkbox" name="distribute_partials">
+        <br>{{ form.distribute_partials }}
         <label for="foil">distribute partial derivatives</label>
-        <br><input id="foil_no_distribute" type="checkbox" name="foil_no_distribute">
+        <br>{{ form.foil_no_distribute }}
         <label for="foil">FOIL out terms without distributing derivatives</label>
     </p>
 
-    <p><input id="compute" type="submit" value="Compute"></p>
+    <p><input id="compute" type="submit" value="Compute">
+        <!-- <label for="output"> Output </label> {{ form.output_equation }} -->
+    </p>
 </form>
 
 <!-- <h2>
