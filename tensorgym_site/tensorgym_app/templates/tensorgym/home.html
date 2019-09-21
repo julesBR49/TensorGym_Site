@@ -1,11 +1,35 @@
 {% extends "tensorgym/base.html" %} {% block content %}
 <h1>TensorGym</h1>
 
-<h2>
+<h2>Input</h2>
+
+<form action="equation" method="post">
+    <p><label for="equation">Input Equation </label>
+        <input id="equation" type="text" size="100" name="equation">
+    </p>
+    <h3>
+        Multiply
+    </h3>
+    <p>
+        <input id="foil" type="checkbox" name="foil">
+        <label for="foil">FOIL out terms, distributing derivatives when necessary (recommended)</label>
+        <br><input id="distribute_partials" type="checkbox" name="distribute_partials">
+        <label for="foil">distribute partial derivatives</label>
+        <br><input id="foil_no_distribute" type="checkbox" name="foil_no_distribute">
+        <label for="foil">FOIL out terms without distributing derivatives</label>
+    </p>
+
+    <p><input id="compute" type="submit" value="Compute"></p>
+</form>
+
+<!-- <h2>
     Multiply
 </h2>
 
 <h4>
+    <form action="" method="post">
+        <input type="submit" value="OK" <label for="FOIL">FOIL out terms, distributing derivatives when necessary (recommended)</label>
+    </form> 
     <button type="button">Click Here</button> FOIL out terms, distributing derivatives when necessary (recommended)
 </h4>
 <h4>
@@ -68,6 +92,7 @@
 <h4>
     <button type="button">Click Here</button> sort the tensors in each term by number of derivatives (least to greatest)
 </h4>
-<h4>
-    <button type="button">Click Here</button> sort terms by number of derivatives (least to greatest)
-</h4>{% endblock content %}
+<h4> -->
+<!-- <button type="button">Click Here</button> sort terms by number of derivatives (least to greatest)
+</h4> -->
+{% endblock content %}
