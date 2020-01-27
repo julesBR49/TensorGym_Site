@@ -7,11 +7,85 @@ from Tensors.Gemma import Gemma
 import copy
 class Tensor:
 
+
+    """
+    A class used to represent a Tensor
+
+    ...
+
+    Attributes
+    ----------
+    symbol : str
+        the symbol representing the tensor (in LaTeX notation)
+    symmetry : SymmetryProperties
+        object that holds the indices for the tensor
+    isSymmetric : boolean
+        defines whether the tensor is a symmetric tensor
+    partials : list<Partial>
+    
+    sign : string
+    symTenSym : list<string>
+    numTSums : int
+    numPTSums : int
+    rank : int
+    numPartials : int
+    ownerHash : string
+        used for equality testing
+
+
+    Methods
+    -------
+    reinitOwnerHash(self)
+        updates the value of ownerHash
+    getOwnerHash(self)
+        updates and then returns the ownerHash
+    setTSums(self)
+        calculates and sets the value of numTSums based on the current properties of the tensors indices
+    setPTSums(self)
+        calculates and sets the value of numPTSums based on the current properties of the tensors indices and partial derivative indices
+    setSums(self)
+        TODO: figure out exactly what this function does - I think it sets the sum types for the indices belonging to the tensor and partials
+    changeSymmetry(self, newSymmetry)
+        sets isSymmetric value
+    getIsSymmetric(self)
+        returns isSymmetric value
+    getSym(self)
+        returns symmetry attribute (SymmetryProperties object)
+    getSymbol(self)
+        returns the tensory symbol (a string)
+    addPartial(self, p)
+        adds a partial derivative to p and resets the summation pattern
+    getIndices(self)
+        returns the indices of the tensor (a list<Index>)
+    getAllIndices(self)
+        returns a list with the first elements being the indices belonging to the partials and the last element a list of the indices belonging to the tensor
+    getSeparateIndices(self)
+        returns a list<Index> containing the indices of the partial derivatives, in order, followed by the indices of the tensor as seperate elements
+    getPartials(self)
+        returns a list<Partial> containing the tensor's partial derivatives
+    getNumPartials(self)
+        returns the number of partials, an int
+    getRank(self)
+        returns the rank of the tensor, an int
+    getNumTSums(self)
+        returns the number of sums within the tensor's indices, an int
+    getNumPTSums(self):
+        returns the number of sums between the tensor and its partial derivatives, an int
+    getSign(self)
+        returns the sign of the tensor, a string ("+" or "-")
+    changeSign(self, newSign)
+        sets the sign of the tensor, a string ("+" or "-")
+    addPartials(self, partial)
+        adds a partial object to the tensor and resets the sums (TODO again should it reset here?)
+
+    """
+
     ## Constructs a tensor
     # @param symbol a string
-    # @param sym a symmetry property object
-    # @param partials a list of partial objects
-    # @param isSymmetric boolean
+    # @param sym a symmetry property object - essentially it holds the indices for the tensor
+    # @param partials a list of partial objects - these are the partial derivatives acting on the tensor
+    # @param isSymmetric boolean - defines whether the tensor is a symmetric tensor
+    # @param symmetricTensorSymbols a list of strings representing the symbols of the user-defined symmetric tensors
     #
     def __init__(self, symbol, sym, partials=None, sign="+", isSymmetric=False, symmetricTensorSymbols=None):
         self.symbol = symbol
@@ -35,7 +109,8 @@ class Tensor:
         if self.symbol in self.symTenSym:
             self.isSymmetric = True
             self.symmetry.setSymmetric(True)
-        self.numTSums = 0
+        # TODO: can this use the defined function instead of duplicate code?
+        self.numTSums = 0 # number of sums within the tensors indices
         if len(sym.getIndices()) > 1:
             for i in range(len(sym.getIndices())):
                 for j in range(i+1, len(sym.getIndices())):
@@ -43,7 +118,8 @@ class Tensor:
                         sym.getIndices()[i].changeSum(True)
                         sym.getIndices()[j].changeSum(True)
                         self.numTSums += 1
-        self.numPTSums = 0
+        # TODO: can this use the defined function instead of duplicate code?
+        self.numPTSums = 0 # numbers of sums between the partials indices and the tensors indices
         if len(sym.getIndices()) > 0 and len(partials) > 0:
             for p in range(len(partials)):
                 for i in range(len(sym.getIndices())):
@@ -94,6 +170,7 @@ class Tensor:
                         self.symmetry.getIndices()[j].changeSum(True)
                         self.numTSums += 1
 
+    # TODO: what about sums within the partials (square) - should these have their own part in the hash?
     def setPTSums(self):
         self.numPTSums = 0
         if len(self.symmetry.getIndices()) > 0 and len(self.partials) > 0:
@@ -152,6 +229,7 @@ class Tensor:
         self.partials.append(p)
         self.setPTSums()
         self.setSums()
+        # TODO: should the owner hash be reinitialized here? and/ or should i move all sum setting and hash reinitializing to the funciton that uses the hash?
 
     def getIndices(self):
         return self.symmetry.getIndices()
@@ -195,7 +273,6 @@ class Tensor:
         partial.getIndex().setSum(False)
         partial.getIndex().setSumType(Gemma())
         self.partials.append(partial)
-        #self.numPTSums = len(self.partials)
         self.setPTSums()
         self.setSums()
 
@@ -316,6 +393,7 @@ class Tensor:
                 return False
         return True
 
+    # TODO: move all these testSETListEquality methods to their own file
     def testPatternSETListEquality(self, l1, l2):
         if not len(l1) == len(l2):
             return False
@@ -453,6 +531,7 @@ class Tensor:
                     return False
             return True
 
+    # this compares the order of the tensors 
     def __lt__(self, other):
         return self.getNumPartials() < other.getNumPartials()
 

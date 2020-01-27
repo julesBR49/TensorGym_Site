@@ -22,7 +22,10 @@ from email.mime.text import MIMEText
 from ../Kivy import TensorGym.kv
 import os, sys, traceback
 
+"""
+This is for the desktop application, implemented in kivy - not used for web
 
+"""
 
 class InfoPop(ModalView):
     text = StringProperty()

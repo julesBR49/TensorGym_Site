@@ -13,6 +13,7 @@ class EquationTree:
             self.root = EquationNode()
         else:
             self.root = root
+        # TODO: should this be a const maybe?
         self.oneCommands = ["\\alpha", "\\beta", "\\gamma", "\\delta", "\\epsilon", "\\zeta", "\\eta", "\\theta", "\\iota", "\\kappa", "\\lambda", "\\mu", "\\nu", "\\ksi" "\\xi", "\\omikron", "\\omicron", "\\pi", "\\rho", "\\sigma", "\\tau", "\\upsilon", "\\phi", "\\chi", "\\psi", "\\omega", "\\sqrt"]
         self.eqIndicator = False
 

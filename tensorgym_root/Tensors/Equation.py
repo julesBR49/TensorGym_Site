@@ -1073,14 +1073,33 @@ class Equation:
     # @param old the term to be replaced, a (LaTeX formatted) string
     # @param new the term to replace with, a (LaTeX formatted) string
     #
+    """
+    replaceTerms iterates the whole tree and replaces any of the (old) terms with the (new) term
+
+    Parameters
+    ----------
+    old: str
+        the term to be replaced, a (LaTeX formatted) string
+    new: str
+        the term to replace the old term with, a (LaTeX formatted) string
+    """
+
     def replaceTerms(self, old, new):
         old = self.dealWithSummation(old)
         new = self.dealWithSummation(new)
         if old != Summation() and new != Summation():
             self.getTree().replace(self.getTree().getRoot(), old, new)
 
-    ##
-    #
+    """
+    replaceIndices iterates the whole tree and replaces any instances of a given index with a different given index
+
+    Parameters
+    ----------
+    old: str
+        the index to be replaced, a (LaTeX formatted) string
+    new: str
+        the index to replace the old index with, a (LaTeX formatted) string
+    """
     def replaceIndices(self, old, new):
         if old != "" and new != "":
             old = ''.join(old.split())

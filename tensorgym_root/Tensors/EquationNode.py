@@ -2,6 +2,10 @@ from Tensors.Summation import Summation
 from Tensors.Sign import Sign
 class EquationNode:
 
+    """
+    simple node class
+    """
+
     def __init__(self, element=None, brackets=False):
         self.element = element
         self.brackets = brackets
