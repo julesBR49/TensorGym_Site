@@ -1,6 +1,11 @@
 {% extends "tensorgym/base.html" %} {% block content %}
 <h1>TensorGym</h1>
 
+<form action="/about/" method="post">
+    {% csrf_token %}
+    <p><input id="instructions" type="submit" value="Instructions">
+</form>
+
 <h2>Input</h2>
 
 <form action="/" method="post">
