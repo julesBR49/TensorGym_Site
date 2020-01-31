@@ -28,3 +28,11 @@ run the site
 
         cd tensorgym_root
         python manage.py runserver
+
+
+Test
+------
+
+from tensorgym_root run
+
+        python -m unittest
