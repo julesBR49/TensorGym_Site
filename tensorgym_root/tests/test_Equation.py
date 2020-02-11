@@ -9,18 +9,26 @@ class SimpleEquationTest(unittest.TestCase):
         eq = Equation(" Z \\partial_{\\mu} \\partial_{\\nu}h^{\\mu \\nu} + X \\partial_{\\alpha}\\partial_{\\beta} h^{\\alpha \\beta}")
         self.assertEqual(repr(eq),"\\(Z \\partial_{\\mu}\\partial_{\\nu}h^{\\mu \\nu} +X \\partial_{\\alpha}\\partial_{\\beta}h^{\\alpha \\beta} \\)", 'incorrect representation of equation')
 
+    ## Need to fix logic on FOILing
+
     # def test_foil(self):
-    #     self.eq.getTree().foil(self.eq.getTree().getRoot())
-    #     self.assertEqual(repr(self.eq)," ", 'incorrect FOIL operation')
+    #     # "\partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)"
+    #     eq = Equation(" Z \\(\\partial_{\\mu} \\partial_{\\nu}h^{\\mu \\nu} + X \\partial_{\\alpha}\\partial_{\\beta} h^{\\alpha \\beta}\\)")
+    #     eq.getTree().foil(self.eq.getTree().getRoot())
+    #     self.assertEqual(repr(self.eq),"\\(Z \\partial_{\\mu}\\partial_{\\nu}h^{\\mu \\nu} +ZX \\partial_{\\alpha}\\partial_{\\beta}h^{\\alpha \\beta} \\)", 'incorrect FOIL operation')
             
     # def test_distributePs(self):
-    #     self.eq.getTree().distributePs(self.eq.getTree().getRoot())
+    #     eq = Equation("\\partial_{\\mu} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\)")
+    #     eq.getTree().distributePs(self.eq.getTree().getRoot())
+    #     self.assertEqual(repr(self.eq), "\\( \\partial_{\\nu}\\partial_{\\mu}h^{\\mu \\nu} + \\partial^{\\mu}\\partial_{\\mu}h_{\\nu}^{\\nu} \\)", 'error in distributing partial derivatives')
 
     # def test_noPfoil(self):
+    #     eq = Equation("A\\partial_{\\mu} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\)")
     #     self.eq.getTree().noPfoil(self.eq.getTree().getRoot())
-            
+    #     self.assertEqual(repr(self.eq), "\\partial_{\\mu} \\( A \\partial_{\\nu}h^{\\mu \\nu} + A \\partial^{\\mu}h_{\\nu}^{\\nu} \\)", 'error in distributing partial derivatives')
+     
     # def test_contract(self):
-    #     self.eq.contract(self.eq.getTree().getRoot())
+    #     eq.contract(eq.getTree().getRoot())
 
     # def test_contractEtas(self):
     #     self.eq.contract(self.eq.getTree().getRoot(), 'eta')
