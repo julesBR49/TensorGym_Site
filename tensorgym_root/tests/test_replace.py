@@ -1,7 +1,7 @@
 import unittest
 from Tensors.Equation import Equation
 
-class SimpleMultiplyTest(unittest.TestCase):
+class SimpleReplaceTest(unittest.TestCase):
     
     #  replace indices
 
@@ -39,7 +39,7 @@ class SimpleMultiplyTest(unittest.TestCase):
     def test_rep_term1(self):
         eq = Equation("4X \\partial_{\\mu} \\partial_{\\nu}h^{\\mu \\nu} +Y \\partial_{\\nu}h^{\\mu \\nu} A^{\\gamma}")
         term_to_replace = "A^{\\gamma}"
-        replacement_term = "B^{\gamma}"
+        replacement_term = "B^{\\gamma}"
         eq.replaceTerms(term_to_replace, replacement_term)
         self.assertEqual(repr(eq),"\\(4 X \\partial_{\\mu}\\partial_{\\nu}h^{\\mu \\nu} +Y \\partial_{\\nu}h^{\\mu \\nu} B^{\\gamma} \\)", '')
 
