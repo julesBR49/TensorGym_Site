@@ -24,6 +24,8 @@ class MultGroup:
     # @param outerPartials special case where multiplication group is just partials and constants - not tensors or variations, a list containing Partial objects
     # @param things a list that can contain tensors OR variations OR summations and get sorted into the correct types
     #
+
+    # TODO: what is this tensorCos for and is it ever used??? low priority
     def __init__(self, sign, numCo=None, symbolCo=None, tensors=None, variations=None, etas=None, deltas=None, partials=None, tensorCos=None, things=None):
         self.showNum = True
         self.sign = sign
@@ -237,12 +239,19 @@ class MultGroup:
 
     # @param newCo is number
     def addNumCo(self, newCo):
-        self.numCo = copy.deepcopy(self.numCo)*copy.deepcopy(newCo)
+        if type(newCo) is Fraction:
+            self.numCo = copy.deepcopy(self.numCo)*copy.deepcopy(newCo)
+        else:
+            pass
+            # TODO: warn 
 
     # @param newCo is string
     def addSymbolCo(self, newCo):
-        if newCo is SymbolCo:
+        if type(newCo) is SymbolCo:
             self.symbolCo = self.symbolCo*newCo
+        else:
+            pass
+            # TODO: warn 
 
     def addSymCo(self, newCo):
         if newCo is SymbolCo:
@@ -694,7 +703,7 @@ class MultGroup:
             derFirst.addPartials(copy.deepcopy(partial))
             multFirst = MultGroup(self.getSign())
             multFirst.addThing(derFirst)  # multGroup object
-            self.addConstantAttributes(multFirst)
+            self.addConstantAttributes(multFirst) # add the constants back
             return Summation([multFirst])  # summation object
         if len(listy) == 2:
             sums = Summation()
