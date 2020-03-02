@@ -32,6 +32,23 @@ class SimpleMultiplyTest(unittest.TestCase):
         eq.getTree().noPfoil(eq.getTree().getRoot())
         self.assertEqual(repr(eq),"A^{\\zeta} \\partial_{\\mu}\\(Y \\partial_{\\nu}h^{\\mu \\nu} +X \\partial^{\\mu}h_{\\nu}^{\\nu} \\)", '')
 
+    def test_mult6(self):
+        eq = Equation(" \\partial_{\\mu} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\) +  T^{\\gamma} \\(A_{\\gamma} + B_{\\gamma}\\)")
+        eq.getTree().noPfoil(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\partial_{\\mu}\\(Y \\partial_{\\nu}h^{\\mu \\nu} +X \\partial^{\\mu}h_{\\nu}^{\\nu} \\)+\\( T^{\\gamma} A_{\\gamma} + T^{\\gamma} B_{\\gamma} \\)", '')
+
+    def test_mult7(self):
+        eq = Equation("A^{\\epsilon} \\partial_{\\mu}  \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\)  ")
+        eq.getTree().noPfoil(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"A^{\\epsilon} \\partial_{\\mu}\\(Y \\partial_{\\nu}h^{\\mu \\nu} +X \\partial^{\\mu}h_{\\nu}^{\\nu} \\)", '')
+
+    def test_mult8(self):
+        eq = Equation("\\partial_{\\mu}   A^{\\epsilon} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
+        eq.getTree().noPfoil(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\(Y \\partial_{\\mu}A^{\\epsilon} \\partial_{\\nu}h^{\\mu \\nu} +X \\partial_{\\mu}A^{\\epsilon} \\partial^{\\mu}h_{\\nu}^{\\nu} \\)", '')
+
+
+
     # def test_representation(self):
     #     eq = Equation("")
     #     eq.getTree().noPfoil(eq.getTree().getRoot())

@@ -210,7 +210,7 @@ class SimpleSortTest(unittest.TestCase):
     def test_sortTerms2(self):
         eq = Equation("\\(\\partial_{\\gamma} \\partial_{\\kappa}A^{\\gamma} + \\partial^{\\chi}B_{\\chi} + C^{}\\) ")
         eq.sortTerms()
-        self.assertEqual(repr(eq), "\( C^{} + \partial^{\chi}B_{\chi} + \partial_{\gamma}\\partial_{\\kappa}A^{\\gamma} \\)",
+        self.assertEqual(repr(eq), "\\( C^{} + \\partial^{\\chi}B_{\\chi} + \\partial_{\\gamma}\\partial_{\\kappa}A^{\\gamma} \\)",
         'error in sorting the terms by number of derivatives (least to greatest)')
     
     # with coefficients
@@ -232,4 +232,11 @@ class SimpleSortTest(unittest.TestCase):
         eq = Equation("\\(\\partial_{\\gamma} \\partial_{\\kappa}\\square A^{\\gamma}\\partial_{\\omega}G^{} + \\square \\partial^{\\chi}B_{\\chi} + \\square X_{\\xi}+ \\square V_{}C^{} \\)")
         eq.sortTerms()
         self.assertEqual(repr(eq), "\\( \\square X_{\\xi} + \\square V^{} C^{} + \\partial^{\\chi}\\square B_{\\chi} + \\partial_{\\gamma}\\partial_{\\kappa}\\square A^{\\gamma} \\partial_{\\omega}G^{} \\)",
+        'error in sorting the terms by number of derivatives (least to greatest)')
+
+
+    def test_sortTerms6(self):
+        eq = Equation("\\partial_{\\xi}H^{}\\partial_{\\omega}G^{}\\partial^{\\xi}M^{} + \\square A^{}")
+        eq.sortTerms()
+        self.assertEqual(repr(eq), "\\( \\square A^{} + \\partial_{\\xi}H^{} \\partial_{\\omega}G^{} \\partial^{\\xi}M^{} \\)",
         'error in sorting the terms by number of derivatives (least to greatest)')
