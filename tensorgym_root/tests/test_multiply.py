@@ -3,6 +3,15 @@ from Tensors.Equation import Equation
 
 class SimpleMultiplyTest(unittest.TestCase):
 
+# Distribute partial derivatives
+    
+    def test_distributep1(self):
+        eq = Equation("\\partial_{\\mu} \\(5 \\partial_{\\nu}h^{\\mu \\nu} + 3 \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\(5 \\partial_{\\nu}\\partial_{\\mu}h^{\\mu \\nu} +3 \\partial^{\\mu}\\partial_{\\mu}h_{\\nu}^{\\nu} \\)", '')
+
+
+
 
 #  FOIL out terms without distributing derivatives
 
