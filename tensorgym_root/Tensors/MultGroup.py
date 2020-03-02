@@ -215,6 +215,14 @@ class MultGroup:
             return True
         else: return False
 
+    def checkNoTensors(self):
+        # TODO: ask if etas and deltas distribute past partials the way constants do....
+        if len(self.tensors) == 0 and len(self.variations) == 0:
+            return True
+        return False
+
+        
+
     def changeSign(self, newSign):
         self.sign = newSign
 

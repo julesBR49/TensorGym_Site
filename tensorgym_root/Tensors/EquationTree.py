@@ -60,7 +60,33 @@ class EquationTree:
             node.setRight(None)
             return node
 
+    def constantCaseHelper(self, node, withPartials, noPartials):
+        constantMult = True
+        if (noPartials.isSum()):
+            print("is sum")
+            for element in noPartials.getElement().getSums():
+                print(element)
+                print(type(element))
+                print(element.checkNoTensors())
+                if not(element.checkNoTensors()):
+                    constantMult = False
+        elif (type(noPartials.getElement()) is MultGroup):
+            print("is multgroup")
+            if not noPartials.getElement().checkNoTensors():
+                constantMult = False
+        if constantMult:
+            partialsList = withPartials.getElement().getPartials()
+            withPartials.getElement().setPartials([])
+            newEl = withPartials.getElement().noPMul(noPartials.getElement())
+            node.setElement(newEl)
+            node.getElement().setPartials(partialsList)
+            return True
+        else:
+            return False
+
     def noPfoil(self, node):
+        print("in no P mul")
+        print(self.traverse())
         if (node.getLeft() is None) and (node.getRight() is None):
             return node
         else:
@@ -85,9 +111,18 @@ class EquationTree:
                         newEl = right.getElement().noPMul(left.getElement())
                         node.setElement(newEl)
                         set = True
+                    # special case - multiply constants in
+                    elif right.getElement().hasPartials() and not left.getElement().hasPartials():
+                        print("special case left")
+                        set = self.constantCaseHelper(node, right, left)
+                    elif left.getElement().hasPartials() and not right.getElement().hasPartials():
+                        print("special case right")
+                        set = self.constantCaseHelper(node, left, right)
+                         
                 if set:
                     node.setLeft(None)
                     node.setRight(None)
+                print("after mult:", self.traverse())
             elif node.getElement() == Sign("*"):
                 if node.getRight().isLeaf() and node.getLeft().getElement == Sign("*"):
                     if not node.getRight().getElement().hasPartials():
