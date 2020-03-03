@@ -7,6 +7,9 @@ class EquationNode:
     """
 
     def __init__(self, element=None, brackets=False):
+        if not(element is None) and (type(element) != Summation) and (type(element) != Sign):
+            print(type(element))
+            raise Exception("incorrect element type")
         self.element = element
         self.brackets = brackets
         self.rightChild = None
