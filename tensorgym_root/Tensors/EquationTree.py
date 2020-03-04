@@ -61,6 +61,7 @@ class EquationTree:
             return node
 
     def constantCaseHelper(self, node, withPartials, noPartials):
+        # TODO should partials multiply in, or get stuck on the outside?????
         constantMult = True
         if (noPartials.isSum()):
             print("is sum")
@@ -79,7 +80,7 @@ class EquationTree:
             withPartials.getElement().setPartials([])
             newEl = withPartials.getElement().noPMul(noPartials.getElement())
             node.setElement(newEl)
-            node.getElement().setPartials(partialsList)
+            node.getElement().addPartials(partialsList)
             return True
         else:
             return False

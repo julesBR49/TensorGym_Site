@@ -10,6 +10,45 @@ class SimpleMultiplyTest(unittest.TestCase):
         eq.getTree().distributePs(eq.getTree().getRoot())
         self.assertEqual(repr(eq),"\\(5 \\partial_{\\nu}\\partial_{\\mu}h^{\\mu \\nu} +3 \\partial^{\\mu}\\partial_{\\mu}h_{\\nu}^{\\nu} \\)", '')
 
+    def test_distributep2(self):
+        eq = Equation("\\partial_{\\mu} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\(Y \\partial_{\\nu}\\partial_{\\mu}h^{\\mu \\nu} +X \\partial^{\\mu}\\partial_{\\mu}h_{\\nu}^{\\nu} \\)", '')
+
+    def test_distributep3(self):
+        eq = Equation("\\partial_{\\mu} \\(5 \\partial_{\\nu}h^{\\mu \\nu} + V \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\(5 \\partial_{\\nu}\\partial_{\\mu}h^{\\mu \\nu} +V \\partial^{\\mu}\\partial_{\\mu}h_{\\nu}^{\\nu} \\)", '')
+
+# product rule
+    def test_distributep4(self):
+        eq = Equation("\\partial_{\\mu} \\( A^{\\gamma}B^{\\zeta}\\) ")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\( \\partial_{\\mu}A^{\\gamma} B^{\\zeta} + \\partial_{\\mu}B^{\\zeta} A^{\\gamma} \\)", '')
+
+# three term product rule
+    def test_distributep5(self):
+        eq = Equation("\\partial_{\\mu} \\( A^{\\gamma}B^{\\zeta}G^{\\alpha}\\)")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\( \\partial_{\\mu}A^{\\gamma} B^{\\zeta} G^{\\alpha} + \\partial_{\\mu}B^{\\zeta} G^{\\alpha} A^{\\gamma} + \\partial_{\\mu}G^{\\alpha} B^{\\zeta} A^{\\gamma} \\)", '')
+
+# distribute through multiple terms
+    def test_distributep6(self):
+        eq = Equation("\\partial_{\\mu} \\( A^{\\gamma}B^{\\zeta}\\) \\partial_{\\alpha}\\(A_{\\gamma}\\) + \\partial_{\\alpha}\\(G_{\\mu \\zeta}\\) ")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\( \\partial_{\\mu}A^{\\gamma} B^{\\zeta} + \\partial_{\\mu}B^{\\zeta} A^{\\gamma} \\)\\( \\partial_{\\alpha}A_{\\gamma} \\)+\\( \\partial_{\\alpha}G_{\\mu \\zeta} \\)", '')
+
+# multiple partials product rule
+    def test_distributep7(self):
+        eq = Equation("\\partial_{\\alpha}\\partial_{\\gamma} \\( A^{\\alpha} B^{\\gamma}\\) ")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\( \\partial_{\\alpha}\\partial_{\\gamma}A^{\\alpha} B^{\\gamma} + \\partial_{\\gamma}B^{\\gamma} \\partial_{\\alpha}A^{\\alpha} + \\partial_{\\alpha}\\partial_{\\gamma}B^{\\gamma} A^{\\alpha} + \\partial_{\\gamma}A^{\\alpha} \\partial_{\\alpha}B^{\\gamma} \\)", '')
+    
+    # def test_distributep1(self):
+    #     eq = Equation("")
+    #     eq.getTree().distributePs(eq.getTree().getRoot())
+    #     self.assertEqual(repr(eq),"", '')
+
 
 
 
