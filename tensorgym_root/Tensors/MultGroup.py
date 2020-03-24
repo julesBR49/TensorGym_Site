@@ -137,6 +137,28 @@ class MultGroup:
             self.minLenP = int(num)
         self.setSums(True)
 
+    # def getIndicesSet(self):
+    #     indices = set()
+    #     for partial in self.getPartials():
+    #         indices.add(repr(partial.getIndex()))
+    #     for tensor in self.getTensors():
+    #         inds = tensor.getIndices()
+    #         for ind in inds:
+    #             indices.add(repr(ind))
+    #     for eta in self.getEtas():
+    #         inds = eta.getIndices()
+    #         for ind in inds:
+    #             indices.add(repr(ind))
+    #     for delta in self.getDeltas():
+    #         inds = delta.getIndices()
+    #         for ind in inds:
+    #             indices.add(repr(ind))
+    #     for variation in self.getVariations():
+    #         inds = variation.getFullIndices()
+    #         for ind in inds:
+    #             indices.add(repr(ind))
+    #     return indices
+
     def setShowNum(self, bool):
         self.showNum = bool
 

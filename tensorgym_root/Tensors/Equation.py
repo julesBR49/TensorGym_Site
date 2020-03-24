@@ -13,7 +13,14 @@ from Tensors.Summation import Summation
 from Tensors.EquationTree import EquationTree
 from Tensors.EquationNode import EquationNode
 from Tensors.Sign import Sign
+from enum import Enum
 import copy
+
+
+class Indices(Enum):
+    GREEK = ["\\alpha", "\\beta", "\\gamma", "\\epsilon", "\\zeta", "\\theta", "\\iota", "\\kappa", "\\lambda", "\\mu", "\\nu", "\\ksi", "\\xi", "\\omikron", "\\omicron", "\\pi", "\\rho", "\\sigma", "\\tau", "\\upsilon", "\\phi", "\\chi", "\\psi", "\\omega"]
+    ROMAN = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
 class Equation:
     ##
     # creates an equation from an input latex style equation
@@ -46,6 +53,9 @@ class Equation:
         self.symTens = symTens.split(",")
         self.tree = EquationTree(self.createExpTree(self.latex))  # store the equation in the form of a binary equation tree
         self.tree.setEqIndicator(self.eqIndicator)
+        self.indexType = self.findType()
+        self.indexSet = self.findIndexSet()
+        print(self.indexSet)
 
     def getDel(self):
         return self.delims
@@ -64,6 +74,25 @@ class Equation:
         elif strx.startswith("\\begin{multline}"):
             strx = "\\begin{multline}" + self.lhs + strx.replace("\\begin{multline}", "")
         return strx
+
+    def findType(self):
+        # check if greek indices are used
+        for index in Indices.GREEK.value:
+            if index in self.latex:
+                return Indices.GREEK.value
+        return Indices.ROMAN.value
+
+    def findIndexSet(self):
+        indexSet = set(self.indexType)
+        elements = self.tree.traverse()
+        for element in elements:
+            if type(element) is Summation:
+                indices = element.getIndices()
+                indicesRepr = set()
+                for ind in indices:
+                    indicesRepr.add(repr(ind))
+                indexSet = indexSet.difference(indicesRepr)
+        return indexSet
 
 
     def getTree(self):

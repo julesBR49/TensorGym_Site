@@ -27,6 +27,17 @@ class Summation:
         if len(self.summation) > 1 or len(self.partials) > 0:
             self.brackets = True
 
+
+    # def getIndices(self):
+    #     indices = set()
+    #     for partial in self.partials:
+    #         indices.add(repr(partial.getIndex()))
+    #     for term in self.summation:
+    #         indices.union(term.getIndices())
+    #     return indices
+        
+
+
     def isZero(self):
         if (len(self.summation) == 1) and (self.summation[0].getNumCo() == Fraction(0)):
             return True
