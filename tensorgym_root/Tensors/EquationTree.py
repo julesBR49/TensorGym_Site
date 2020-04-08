@@ -1,11 +1,12 @@
-from Tensors.EquationNode import EquationNode
-from Tensors.Sign import Sign
+from Tensors.EquationNode import *
+# from Tensors.Sign import Sign
 from Tensors.MultGroup import MultGroup
 from Tensors.TensorCoefficients import TensorCoefficients
 from Tensors.Coefficient import Coefficient
 from Tensors.SymbolCo import SymbolCo
 from Tensors.Fraction import Fraction
 from Tensors.Summation import Summation
+import Constants
 import copy
 class EquationTree:
     def __init__(self, root=None):
@@ -14,27 +15,30 @@ class EquationTree:
         else:
             self.root = root
         # TODO: should this be a const maybe?
-        self.oneCommands = ["\\alpha", "\\beta", "\\gamma", "\\delta", "\\epsilon", "\\zeta", "\\eta", "\\theta", "\\iota", "\\kappa", "\\lambda", "\\mu", "\\nu", "\\ksi" "\\xi", "\\omikron", "\\omicron", "\\pi", "\\rho", "\\sigma", "\\tau", "\\upsilon", "\\phi", "\\chi", "\\psi", "\\omega", "\\sqrt"]
+        self.oneCommands = Constants.COMMANDS
         self.eqIndicator = False
 
     def getRoot(self):
         return self.root
 
     def setRoot(self, newRoot):
+        if not isinstance(newRoot, EquationNode):
+            raise TypeError("root must be instance of EquationNode")
         self.root = newRoot
 
     def setEqIndicator(self, ind):
         self.eqIndicator = ind
 
-    def inorder(self, node, tempList):
+    def getElements(self, node, tempList):
         if node is not None:
-            self.inorder(node.getLeft(), tempList)
-            tempList.append(node.getElement())
-            self.inorder(node.getRight(), tempList)
+            for child in node.getChildren():
+                self.getElements(child, tempList)
+            if isinstance(node, ElementNode):
+                tempList.append(node.getElement())
 
     def traverse(self):
         tempList = list()
-        self.inorder(self.root, tempList)
+        self.getElements(self.root, tempList)
         return tempList
 
     def foil(self, node):
