@@ -12,7 +12,7 @@ from Tensors.MultGroup import MultGroup
 from Tensors.Summation import Summation
 from Tensors.EquationTree import EquationTree
 from Tensors.EquationNode import EquationNode
-from Tensors.Sign import Sign
+# from Tensors.Sign import Sign
 from enum import Enum
 import copy
 

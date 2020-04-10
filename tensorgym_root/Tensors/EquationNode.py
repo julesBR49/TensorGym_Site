@@ -63,7 +63,19 @@ class ElementNode(EquationNode):
 class BracketsNode(EquationNode):
     # BracketNodes must be internal nodes. They have no elements but have methods 
     # to set and add children nodes
-    pass
+    def __init__(self, sign = Sign.POSITIVE):
+        self.partials = []
+        EquationNode.__init__(self, sign)
+
+    def addPartial(self, partial):
+        self.partials.append(partial)
+
+    def setPartials(self, partials):
+        self.partials = partials
+
+    def removePartial(self, partial):
+        if partial in self.partials:
+            self.partials.remove(partial)
 
     def setChildren(self, el):
         self.children = el
@@ -89,5 +101,29 @@ class MultBracNode(BracketsNode):
     pass
 
 class SumBracNode(BracketsNode):
+    pass
+
+
+    def distributePartials(self):
+        while len(self.partials) > 0:
+            partial = self.partials[0]
+            self.distributePartial(partial)
+            self.removePartial(partial)
+
+    def distributePartial(self, partial):
+        if partial is not None:
+            for child in self.getChildren():
+                if isinstance(child, ElementNode):
+                    multiplication = child.getElement()
+                    productRuleOfSum = multiplication.distributePartial(copy.deepcopy(partial), copy.deepcopy(multiplication.getTensors()) + copy.deepcopy(multiplication.getVariations()))  # returns a summation object
+                    child.setElement(productRuleOfSum)
+                if isinstance(child, SumBracNode):
+                    child.addPartial(partial)
+                    child.distributePartials()
+                if isinstance(child, MultBracNode):
+                    child.addPartial(partial)
+
+
+class RootNode(SumBracNode):
     pass
     

@@ -44,24 +44,41 @@ class EquationTree:
     def foil(self, node):
         if node is None:
             return
-        if (node.getLeft() is None) and (node.getRight() is None):
-            return node
-        else:
-            right = self.foil(node.getRight())
-            left = self.foil(node.getLeft())
-            if not node.isAlgOpp():
-                raise TypeError("Nodal element issue")
-            if node.getElement() == Sign("+"):
-                newEl = right.getElement()+left.getElement()
-                node.setElement(newEl)
-            elif node.getElement() == Sign("-"):
-                newEl = right.getElement()-left.getElement()
-                node.setElement(newEl)
-            elif node.getElement() == Sign("*"):
-                newEl = copy.deepcopy(right.getElement())*copy.deepcopy(left.getElement())
-                node.setElement(newEl)
-            node.setLeft(None)
-            node.setRight(None)
+        if isinstance(node, ElementNode):
+            return [node]
+        # if all the children are leaf nodes (element nodes), return node
+        elList = []
+
+        if isinstance(node, SumBracNode):
+            # return a list of it's children
+            el_list = []
+            for child in node.getChildren():
+                el_list += self.foil(child)
+            node.setChildren(el_list)
+            node.distributePartials()
+
+        if isinstance(node, MultBracNode):
+            list_of_lists = []
+            for child in node.getChildren():
+                list_of_lists.append(self.foil(child))
+            while len(list_of_lists)> 1:
+                list1 = list_of_lists[0]
+                list2 = list_of_lists[1]
+                list_of_lists.pop(0)
+                new_list = []
+                for el1 in list1:
+                    for el2 in list2:
+                        new_list.append(copy.deepcopy(el1.getElement())*copy.deepcopy(el2.getElement()))
+                list_of_lists[0] = new_list
+                # would need to replace the multbracnode with a sumbracnode
+                return list_of_lists
+
+        if isinstance(node, RootNode):
+            el_list = []
+            for child in node.getChildren():
+                el_list += self.foil(child)
+            node.setChildren(el_list)
+            node.distributePartials()
             return node
 
     def constantCaseHelper(self, node, withPartials, noPartials):
