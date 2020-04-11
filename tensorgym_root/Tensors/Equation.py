@@ -135,7 +135,7 @@ class Equation:
             r = ' '.join(r.split())
             rightNode = self.createExpTree(r, True)  # recursive call to deal with info in r
         else:  # BASE CASE: no recursive call
-            print("\nsending to deal with summation: ...", right, "\n")
+            # print("\nsending to deal with summation: ...", right, "\n")
             rightNode = EquationNode(self.dealWithSummation(right, brac))  # create an equation node out of summation object with info from right
         # deal with left
         if left is None and sign is None:
@@ -166,7 +166,7 @@ class Equation:
             r = ' '.join(r.split())
             leftNode = self.createExpTree(r, True)  # recursive call to deal with info in r
         else:  # BASE CASE: no recursive call
-            print("\nsending to deal with summation: ...", left, "\n")
+            # print("\nsending to deal with summation: ...", left, "\n")
             leftNode = EquationNode(self.dealWithSummation(left, brac))  # create an equation node out of summation object with info from left
         # create tree
         root = EquationNode(Sign(sign), brac)  # only called if left not None
@@ -228,8 +228,8 @@ class Equation:
         g1 = g2 = 0
         parts = list()
         done = False
-        print(strx)
-        print("j" in strx)
+        # print(strx)
+        # print("j" in strx)
         while not done:
             while g2 < (len(strx)-1) and strx[g2] != "+" and strx[g2] != "-":
                 g2 = self.skipBrackets(strx, g2)  # don't check for +/- inside brackets
@@ -248,8 +248,8 @@ class Equation:
             if not (el == " " or el == ""):
                 mult = self.dealWithMultGroup(el)
                 sums.addTerm(mult)
-        print("printing sums now...")
-        sums.printSums()
+        # print("printing sums now...")
+        # sums.printSums()
         return sums
 
     ##

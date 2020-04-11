@@ -48,15 +48,15 @@ class SimpleRepresentationTest(unittest.TestCase):
         eq = Equation("\\(\\(a \\)- \\(b - \\(c \\)\\)\\)+\\(\\(a^{\\gamma} - d^{\\gamma}\\) - b\\) ")
         self.assertEqual(repr(eq),"\\(\\(a \\)- \\(b - \\(c \\)\\)\\)+\\(\\( a^{\\gamma} - d^{\\gamma} \\)-b \\)", '')
 
+    # complicated bracket nesting and tensor indices, multiplication, and partials
+    def test_rep10(self):
+        eq = Equation("\\partial_{\\zeta}\\( G^{\\gamma} \\) \\partial^{\\zeta} \\square \\(\\( A^{} \\)- \\( B_{\\kappa}^{\\kappa} - \\( C^{} \\)\\)\\)+\\(\\( A^{\\gamma} - D^{\\gamma} \\)- B_{\\alpha}^{\\alpha \\gamma} \\)")
+        self.assertEqual(repr(eq),"\\partial_{\\zeta}\\( G^{\\gamma} \\) \\partial^{\\zeta} \\square \\(\\( A^{} \\)- \\( B_{\\kappa}^{\\kappa} - \\( C^{} \\)\\)\\)+\\(\\( A^{\\gamma} - D^{\\gamma} \\)- B_{\\alpha}^{\\alpha \\gamma} \\)", '')
 
-    # def test_rep10(self):
-    #     eq = Equation("")
-    #     self.assertEqual(repr(eq),"", '')
 
-
-    # def test_rep(self):
-    #     eq = Equation("")
-    #     self.assertEqual(repr(eq),"", '')
+    def test_rep(self):
+        eq = Equation("\\begin{equation}\n G^{\\mu} =A^{\\mu} + C^{\\mu \\epsilon} \\( A_{\\epsilon} - B_{\\epsilon} \\)\n\\end{equation}")
+        self.assertEqual(repr(eq),"\\begin{equation} G^{\\mu} = \nA^{\\mu} + C^{\\mu \\epsilon} \\( A_{\\epsilon} - B_{\\epsilon} \\)\n\\end{equation}", '')
 
 
     # def test_rep11(self):
