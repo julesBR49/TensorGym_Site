@@ -28,6 +28,12 @@ class Summation:
             self.brackets = True
 
 
+    def printSums(self):
+        # print(len(self.getSums()))
+        for el in self.getSums():
+            print("sum:", el)
+
+
     # def getIndices(self):
     #     indices = set()
     #     for partial in self.partials:

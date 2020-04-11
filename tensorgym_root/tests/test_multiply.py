@@ -3,7 +3,15 @@ from Tensors.Equation import Equation
 
 class SimpleMultiplyTest(unittest.TestCase):
 
-# Distribute partial derivatives
+
+# FOIL out terms, distributing derivatives when necessary (recommended) ------------------------------------------------------
+
+    def test_foil1(self):
+        eq = Equation("\\(A^{}\\) \\partial_{\\mu} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\)")
+        eq.getTree().foil(eq.getTree().getRoot())
+        self.assertEqual(repr(eq),"\\(Y A^{} \\partial_{\\nu}\\partial_{\\mu}h^{\\mu \\nu} +X A^{} \\partial^{\\mu}\\partial_{\\mu}h_{\\nu}^{\\nu} \\)", '')
+
+# Distribute partial derivatives ------------------------------------------------------
     
     def test_distributep1(self):
         eq = Equation("\\partial_{\\mu} \\(5 \\partial_{\\nu}h^{\\mu \\nu} + 3 \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
@@ -52,7 +60,7 @@ class SimpleMultiplyTest(unittest.TestCase):
 
 
 
-#  FOIL out terms without distributing derivatives
+#  FOIL out terms without distributing derivatives ------------------------------------------------------
 
     def test_noPmult1(self):
         eq = Equation(" \\(A^{}\\) \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
@@ -99,7 +107,7 @@ class SimpleMultiplyTest(unittest.TestCase):
         eq.getTree().noPfoil(eq.getTree().getRoot())
         self.assertEqual(repr(eq),"A^{\\epsilon} \\partial_{\\mu}\\(Y \\partial_{\\nu}h^{\\mu \\nu} +X \\partial^{\\mu}h_{\\nu}^{\\nu} \\)- B^{\\epsilon}", '')
 
-# constants can move through derivatives
+# constants can move through derivatives 
 
     def test_noPmult10(self):
         eq = Equation("A \\partial_{\\mu} \\(Y \\partial_{\\nu}h^{\\mu \\nu} + X \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")

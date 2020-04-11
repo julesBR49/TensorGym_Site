@@ -1,5 +1,6 @@
 from django import forms
 from Tensors.Equation import Equation
+import traceback
 
 class EquationForm(forms.Form):
     # input
@@ -43,6 +44,8 @@ class EquationForm(forms.Form):
     def compute(self):
         try:
             base_equation = Equation(self.equation, self.symmetric_tensors)
+            # base_equation.getTree().printTreeAsTree(base_equation.getTree().traverse())
+            print(base_equation.getTree().traverse())
             self.output_equation = ""
             if base_equation.getCov():
                 # self.open_pop("../Kivy/images/cov_warning.png")
@@ -145,6 +148,7 @@ class EquationForm(forms.Form):
                 self.output_equation += "\n" + "\n"
         except Exception as exceptObj:
             self.output_equation = str(exceptObj) + "\n\nPlease email jbrucero@uwo.ca for if you think this is a bug"
+            traceback.print_tb(exceptObj.__traceback__)
             # self.exception_str = str(exceptObj)
             #tb = sys.exc_info()[-1]
             #stk = traceback.extract_tb(tb, 1)

@@ -28,6 +28,7 @@ class EquationTree:
 
     def inorder(self, node, tempList):
         if node is not None:
+            print(type(node))
             self.inorder(node.getLeft(), tempList)
             tempList.append(node.getElement())
             self.inorder(node.getRight(), tempList)
