@@ -44,7 +44,7 @@ class Equation:
         sides = self.latex.split("=")
         self.lhs = ""
         if len(sides) > 1:
-            self.lhs = sides[0] + "="
+            self.lhs = sides[0] + "= "
             sides.pop(0)
             self.latex = ''.join(sides)
         self.latex = ' '.join(self.latex.split("\\\\"))  # remove any multline line delimiters - they will be re-added in repr
@@ -70,9 +70,11 @@ class Equation:
     def __repr__(self):
         strx = repr(self.tree)
         if strx.startswith("\\begin{equation}"):
-            strx = "\\begin{equation}" + self.lhs + strx.replace("\\begin{equation}", "")
+            strx = "\\begin{equation} \n" + self.lhs + strx.replace("\\begin{equation} \n", "")
         elif strx.startswith("\\begin{multline}"):
-            strx = "\\begin{multline}" + self.lhs + strx.replace("\\begin{multline}", "")
+            strx = "\\begin{multline} \n" + self.lhs + strx.replace("\\begin{multline} \n", "")
+        elif self.lhs != '':
+            strx = self.lhs + strx
         return strx
 
     def findType(self):
