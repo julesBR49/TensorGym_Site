@@ -1,0 +1,944 @@
+\documentclass{article}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily}
+\usepackage[margin=0.75in]{geometry}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{xcolor}
+\def\partialv{\partial}
+\def\deltav{\delta}
+\def\){\Big)}
+\def\({\Big(}
+
+\title{Test}
+\author{Julia Bruce-Robertson}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+
+CURRENT ISSUES:
+
+•	Replacement issues\\
+•	ISSUES WITH NEGATIVES!!!!\\
+
+QUESTION — should outside brackets have to be \begin{verbatim}\(\end{verbatim}????\\
+
+\begin{equation}
+\partial_{\mu} A \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)
+\end{equation}
+
+\begin{equation}
+\partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+
+Contract:
+\begin{equation}
+\partial_{\mu} A \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)
+\end{equation}
+
+
+
+
+\section{Representation}
+Reading in and understanding equations (display initial equation)\\
+
+
+Reading in signs between brackets
+\begin{equation}
+\(a\) + \(b\) 
+\rightarrow
+\(a \)+\(b \)
+\end{equation}
+
+\begin{equation}
+\(a \)-\(b \) 
+\rightarrow 
+\(a \)-\(b \)
+\end{equation}
+
+basic reading in signs inside brackets
+\begin{equation}
+b_{\gamma} - g_{j} 
+\rightarrow 
+\( b_{\gamma} - g_{j} \)
+\end{equation}
+
+inside and outside brackets
+\begin{equation}
+A^{\mu} + \(A^{\gamma} - B^{\zeta}\) 
+\rightarrow
+A^{\mu} +\( A^{\gamma} - B^{\zeta} \)
+\end{equation}
+
+
+\begin{equation}
+A^{\mu} - \(A^{\gamma} - B^{\zeta}\) 
+\rightarrow
+A^{\mu} - \( A^{\gamma} - B^{\zeta} \)
+\end{equation}
+
+
+with partial derivatives
+\begin{equation}
+\partial_{\alpha} \( a +\( b_{\gamma} - g\)\) 
+\rightarrow 
+\partial_{\alpha} \(a +\( b_{\gamma} -g \)\)
+\end{equation}
+
+multiplied by a tensor
+
+\begin{equation}
+A^{\mu} + C^{\epsilon}\(A^{\gamma} - B^{\zeta}\) 
+\rightarrow
+A^{\mu} + C^{\epsilon} \( A^{\gamma} - B^{\zeta} \)
+\end{equation}
+
+
+complicated bracket nesting
+\begin{equation}
+\(\(a \)- \(b - \(c \)\)\)+\(\(a - d\) - b\) \rightarrow
+\(\(a \)- \(b - \(c \)\)\)+\(\(a -d \)-b \)
+\end{equation}
+
+complicated bracket nesting and tensor indices
+\begin{equation}
+\(\(a \)- \(b - \(c \)\)\)+\(\(a^{\gamma} - d^{\gamma}\) - b\) 
+\rightarrow
+ \(\(a \)- \(b - \(c \)\)\)+\(\( a^{\gamma} - d^{\gamma} \)-b \)
+\end{equation}
+
+complicated bracket nesting and tensor indices, multiplication, and partials
+\begin{multline}
+\partial_{\zeta}\(G^{\gamma} \) \partial^{\zeta} \square \(\(A_{} \)- \(B^{\kappa}_{\kappa} - \(C^{} \)\)\)+\(\(A^{\gamma} - D^{\gamma}\) - B^{\alpha \gamma}_{\alpha}\)  \\
+\rightarrow
+\partial_{\zeta}\( G^{\gamma} \) \partial^{\zeta} \square \(\( A^{} \)- \( B_{\kappa}^{\kappa} - \( C^{} \)\)\)+\(\( A^{\gamma} - D^{\gamma} \)- B_{\alpha}^{\alpha \gamma} \)
+\end{multline}
+
+
+with equals sign
+\begin{equation}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) 
+\rightarrow
+G^{\mu} = A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)
+\end{equation}
+
+
+with begin equation command
+\begin{verbatim}
+\begin{equation}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) 
+\end{equation}
+->
+\begin{equation}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)
+\end{equation}
+\end{verbatim}
+
+
+with begin multline command (but short so it changes to equation)
+\begin{verbatim}
+\begin{multline}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) 
+\end{multline}
+->
+\begin{equation}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)
+\end{equation}
+\end{verbatim}
+
+with begin multline command and long enough to stay multline
+\begin{verbatim}
+\begin{multline}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\)  + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\)  + A^{\mu} 
++\\ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++\\ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) + A^{\mu} 
++ C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) 
+\end{multline}
+->
+\begin{multline}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} \\
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} \\
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} \\
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} 
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)
+\end{multline}
+\end{verbatim}
+
+also print above to test what it looks like visually: output is
+
+\begin{multline}
+G^{\mu} = A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} \\
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} \\
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} \\
++ C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)+ A^{\mu} + C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)
+\end{multline}
+
+each line could be longer before wrapping but I'm pretty happy with how it looks for now\\
+
+with etas and deltas and fractions
+
+\begin{equation}
+7X\eta_{\mu \nu} \delta_{\nu}^{\gamma}\square A^{\mu} + \frac{1}{3}\delta_{\mu}^{\gamma}C^{\mu \epsilon}\(A_{\epsilon} - B_{\epsilon}\) 
+\rightarrow
+7 X \delta_{\nu}^{\gamma} \eta_{\mu \nu} \square A^{\mu} +\frac{1}{3} \delta_{\mu}^{\gamma} C^{\mu \epsilon} \( A_{\epsilon} - B_{\epsilon} \)
+\end{equation}
+
+
+multiple coefficients 
+\begin{equation}
+\(XY Z \partial_{\nu}h^{\mu \nu} + 6bX \partial^{\mu} h^{\nu }_{\nu}\) 
+\rightarrow
+\(XY Z \partial_{\nu}h^{\mu \nu} +6 bX \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+multiple coefficients in unusual order
+\begin{equation}
+\(XY \partial_{\nu}h^{\mu \nu}Z + b6X \partial^{\mu} h^{\nu }_{\nu}\) 
+\rightarrow
+\(XY Z \partial_{\nu}h^{\mu \nu} +6 bX \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+
+
+{\color{red}
+breaks (is this good or no??)
+\begin{equation}
+A^{\alpha}\frac{1}{3}B_{\gamma} \rightarrow \textrm{
+Equation: pop from empty list}
+\end{equation}
+
+this one seems to work…
+\begin{equation}
+A^{\alpha}3B_{\gamma} \rightarrow 
+ 3 A^{\alpha} B_{\gamma}
+ \end{equation}
+ }
+
+QUESTION: does multiplication always need brackets? If no, when does it need them? Why does the whole number work but the fraction breaks….\\
+
+Please email jbrucero@uwo.ca for if you think this is a bug\\
+
+*****things that shouldn’t work\\
+*** uneven brackets\\
+\begin{equation}
+\(A + B \rightarrow WORKING (though the message could be greatly improved)
+"Equation:
+Please email jbrucero@uwo.ca for if you think this is a bug”
+\end{equation}
+
+*** uneven index brackets
+\begin{equation}
+A^\{\gamma  \rightarrow Working in that it should error but again the issue could probably be caught earlier and a better message given)
+"Equation: string index out of range
+Please email jbrucero@uwo.ca for if you think this is a bug”
+\end{equation}
+
+\begin{equation}
+A^{\gamma} + B^\{ \rightarrow this one reads the equation fine - is this an issue???
+\( A^{\gamma} + B^{} \)
+\end{equation}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Multiply}
+
+%%%
+ \subsection{FOIL out terms, distributing derivatives when necessary (recommended)}
+Basic case:
+\begin{equation}
+\(A^{}\) \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)  	
+\rightarrow
+\(Y A^{} \partial_{\nu}\partial_{\mu}h^{\mu \nu} +X A^{} \partial^{\mu}\partial_{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+
+Also need to test adding summations, with and without partials, and subtracting summations, with and without partials
+%%%
+\subsection{ distribute partial derivatives}
+Basic case:
+\begin{equation}
+\partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)  \rightarrow \(Y \partial_{\nu}\partial_{\mu}h^{\mu \nu} +X \partial^{\mu}\partial_{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+** number coefficients
+\begin{equation}
+\partial_{\mu} \(5 \partial_{\nu}h^{\mu \nu} + 3 \partial^{\mu} h^{\nu }_{\nu}\)  \rightarrow  \(5 \partial_{\nu}\partial_{\mu}h^{\mu \nu} +3 \partial^{\mu}\partial_{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+** mixed coefficients
+\begin{equation}
+\partial_{\mu} \(5 \partial_{\nu}h^{\mu \nu} + V \partial^{\mu} h^{\nu }_{\nu}\) \rightarrow \(5 \partial_{\nu}\partial_{\mu}h^{\mu \nu} +V \partial^{\mu}\partial_{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+** product rule
+\begin{equation}
+\partial_{\mu} \( A^{\gamma}B^{\zeta}\) \rightarrow
+ \( \partial_{\mu}A^{\gamma} B^{\zeta} + \partial_{\mu}B^{\zeta} A^{\gamma} \)
+\end{equation}
+
+** three term product rule
+
+\begin{equation}
+\partial_{\mu} \( A^{\gamma}B^{\zeta}G^{\alpha}\) \rightarrow
+\( \partial_{\mu}A^{\gamma} B^{\zeta} G^{\alpha} + \partial_{\mu}B^{\zeta} G^{\alpha} A^{\gamma} + \partial_{\mu}G^{\alpha} B^{\zeta} A^{\gamma} \)
+\end{equation}
+
+*** Distribute through multiple terms
+\begin{equation}
+\partial_{\mu} \( A^{\gamma}B^{\zeta}\) \partial_{\alpha}\(A_{\gamma}\) + \partial_{\alpha}\(G_{\mu \zeta}\) \rightarrow
+\( \partial_{\mu}A^{\gamma} B^{\zeta} + \partial_{\mu}B^{\zeta} A^{\gamma} \)\( \partial_{\alpha}A_{\gamma} \)+\( \partial_{\alpha}G_{\mu \zeta} \)
+\end{equation}
+
+** multiple partials product rule
+\begin{equation}
+\partial_{\alpha}\partial_{\gamma} \( A^{\alpha} B^{\gamma}\) \rightarrow
+ \( \partial_{\alpha}\partial_{\gamma}A^{\alpha} B^{\gamma} + \partial_{\gamma}B^{\gamma} \partial_{\alpha}A^{\alpha} + \partial_{\alpha}\partial_{\gamma}B^{\gamma} A^{\alpha} + \partial_{\gamma}A^{\alpha} \partial_{\alpha}B^{\gamma} \)
+\end{equation}
+
+** what about squares\\
+
+ISSUE
+{\color{red}
+\begin{equation}
+\square \(A^{\alpha}B_{\alpha}\) -> NOT WORKING
+\( \square A^{\alpha} B_{\alpha} + \square B_{\alpha} A^{\alpha} + \square B_{\alpha} A^{\alpha} + \square A^{\alpha} B_{\alpha} \)
+\end{equation}
+}
+
+
+******** also check with equals signssssss\\
+It appears that numbers are working but symbolic coefficients are not\\
+** non-tensor terms\\
+** only partial terms\\
+
+ALSO test product rule with multiple tensors!!!!\\
+
+QUESTION: why num co, symco, AND tensorCos?? What happens with multiple coefficients???\\
+
+%%%
+ \subsection{FOIL out terms without distributing derivatives}
+Basic case: 
+\begin{equation}
+\(A^{}\) \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)  \rightarrow \(Y A^{} \partial_{\nu}h^{\mu \nu} +X A^{} \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+Alternate cases:\\
+*** constants that can move through the derivatives\\
+\begin{equation}
+\partial_{\mu} A \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)   \rightarrow \partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+{\color{red}
+\begin{equation}
+A \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) 	-> (NOT working) FIXED \partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+}
+
+\begin{equation}
+4 \partial_{\mu}  \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)   \rightarrow \partial_{\mu}\(4 Y \partial_{\nu}h^{\mu \nu} +4 X \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+*** multiple terms
+\begin{equation}
+\(A + 5B + CD \) \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) \rightarrow
+\partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +5 YB \partial_{\nu}h^{\mu \nu} +YCD \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} +5 XB \partial^{\mu}h_{\nu}^{\nu} +XCD \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+*** etas and deltas
+\begin{equation}
+\delta^{\gamma}_{\zeta} \eta^{\nu \alpha} \partial_{\mu} \(Y \partial_{\nu}h^{\mu \zeta} + X \partial^{\mu} h^{\zeta }_{\nu}\) \rightarrow
+\partial_{\mu}\(Y \delta_{\zeta}^{\gamma} \eta^{\nu \alpha} \partial_{\nu}h^{\mu \zeta} +X \delta_{\zeta}^{\gamma} \eta^{\nu \alpha} \partial^{\mu}h_{\nu}^{\zeta} \)
+\end{equation}
+
+*** sum of mixed constants
+\begin{equation}
+\(A \eta^{\gamma \epsilon} + A5B + 56 \delta^{\phi}_{\xi} \) \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) \rightarrow
+\partial_{\mu}\(YA \eta^{\gamma \epsilon} \partial_{\nu}h^{\mu \nu} +5 YAB \partial_{\nu}h^{\mu \nu} +56 Y \delta_{\xi}^{\phi} \partial_{\nu}h^{\mu \nu} +XA \eta^{\gamma \epsilon} \partial^{\mu}h_{\nu}^{\nu} +5 XAB \partial^{\mu}h_{\nu}^{\nu} +56 X \delta_{\xi}^{\phi} \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+TODO: decide on how partials behave then implement test cases for them\\
+Question: do all nodes have summation objects or do some have multgroup objects?? – they appear to all be summation objects\\
+*** derivative is attached to a multgroup and doesn’t need to be distributed\\
+\begin{equation}
+ \partial_{\gamma}A^{\gamma}  \(Y \partial_{\mu}\partial_{\nu}h^{\mu \nu} + X \partial_{\mu}\partial^{\mu} h^{\nu }_{\nu}\)  \rightarrow \(Y \partial_{\gamma}A^{\gamma} \partial_{\mu}\partial_{\nu}h^{\mu \nu} +X \partial_{\gamma}A^{\gamma} \partial_{\mu}\partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+** with added term at the end
+\begin{equation}
+\partial_{\mu}   A^{\epsilon} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) + B^{\epsilon} \rightarrow  \(Y \partial_{\mu}A^{\epsilon} \partial_{\nu}h^{\mu \nu} +X \partial_{\mu}A^{\epsilon} \partial^{\mu}h_{\nu}^{\nu} + B^{\epsilon} \)
+\end{equation}
+
+
+***with subtracted term at the end
+\begin{equation}
+\partial_{\mu}   A^{\epsilon} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) - B^{\epsilon} \rightarrow  \(Y \partial_{\mu}A^{\epsilon} \partial_{\nu}h^{\mu \nu} +X \partial_{\mu}A^{\epsilon} \partial^{\mu}h_{\nu}^{\nu} - B^{\epsilon} \)
+\end{equation}
+
+
+*** test FOIL ability
+** 2 terms
+\begin{equation}
+\(A^{\epsilon} + B^{\gamma} \) \( \partial_{\mu}X^{\mu} + M^{\nu \zeta}_{\gamma} \) \rightarrow
+\( A^{\epsilon} \partial_{\mu}X^{\mu} + A^{\epsilon} M_{\gamma}^{\nu \zeta} + B^{\gamma} \partial_{\mu}X^{\mu} + B^{\gamma} M_{\gamma}^{\nu \zeta} \)
+\end{equation}
+
+
+** 3 terms
+\begin{equation}
+H \(A^{\epsilon} + B^{\gamma} \) \( \partial_{\mu}X^{\mu} + M^{\nu \zeta}_{\gamma} \) \( X + Y\) \rightarrow
+\(HX A^{\epsilon} \partial_{\mu}X^{\mu} +HY A^{\epsilon} \partial_{\mu}X^{\mu} +HX A^{\epsilon} M_{\gamma}^{\nu \zeta} +HY A^{\epsilon} M_{\gamma}^{\nu \zeta} +HX B^{\gamma} \partial_{\mu}X^{\mu} +HY B^{\gamma} \partial_{\mu}X^{\mu} +HX B^{\gamma} M_{\gamma}^{\nu \zeta} \\
++HY B^{\gamma} M_{\gamma}^{\nu \zeta} \)
+\end{equation}
+
+TODO figure out the part with switching and write test cases for it\\
+ALSO etas and deltas\\
+** multgroup also has constant factor\\
+\begin{equation}
+B \partial_{\gamma}A^{\gamma}  \(Y \partial_{\mu}\partial_{\nu}h^{\mu \nu} + X \partial_{\mu}\partial^{\mu} h^{\nu }_{\nu}\)  \rightarrow  \(BY \partial_{\gamma}A^{\gamma} \partial_{\mu}\partial_{\nu}h^{\mu \nu} +BX \partial_{\gamma}A^{\gamma} \partial_{\mu}\partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+**** Shouldn’t be distributed
+\begin{equation}
+A^{\zeta} \partial_{\mu}  \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) \rightarrow  A^{\zeta} \partial_{\mu}\(Y \partial_{\nu}h^{\mu \nu} +X \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+\begin{equation}
+ \partial_{\mu}  \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) +  T^{\gamma} \(A_{\gamma} + B_{\gamma}\) \rightarrow \partial_{\mu}\(Y \partial_{\nu}h^{\mu \nu} +X \partial^{\mu}h_{\nu}^{\nu} \)+\( T^{\gamma} A_{\gamma} + T^{\gamma} B_{\gamma} \)
+\end{equation}
+
+*** with added term at the end
+\begin{equation}
+A^{\epsilon} \partial_{\mu}  \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) + B^{\epsilon}  \rightarrow A^{\epsilon} \partial_{\mu}\(Y \partial_{\nu}h^{\mu \nu} +X \partial^{\mu}h_{\nu}^{\nu} \)+ B^{\epsilon}
+\end{equation}
+
+*** with subtracted term at the end
+\begin{equation}
+A^{\epsilon} \partial_{\mu}  \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) - B^{\epsilon}  \rightarrow A^{\epsilon} \partial_{\mu}\(Y \partial_{\nu}h^{\mu \nu} +X \partial^{\mu}h_{\nu}^{\nu} \)- B^{\epsilon}
+\end{equation}
+
+{\color{blue}
+Is this sensical or non-sensical???
+\begin{equation}
+\( \partial_{alpha} \) \(A^{\gamma}B_{\gamma}\) -> LEADS TO 
+\partial_{alpha}\( A^{\gamma} B_{\gamma} \)
+\end{equation}
+
+What about…
+
+\begin{equation}
+\( \partial_{\alpha} \) \partial^{\alpha}\(A^{\gamma}B_{\gamma}\) -> LEADS TO
+\partial_{\alpha}\partial^{\alpha}\( A^{\gamma} B_{\gamma} \)
+\end{equation}
+}
+
+Also need to test adding summations, with and without partials, and subtracting summations, with and without partials\\
+
+
+
+
+
+
+
+
+\section{Contract}
+ \subsection{contract etas and deltas}
+\begin{equation}
+\delta^{\gamma}_{\beta} \eta^{\nu \alpha} \partial_{\mu} h^{\mu}_{\alpha}\partial_{\nu} h^{\beta}_{\gamma}  \rightarrow  \partial_{\mu}h^{\mu \nu} \partial_{\nu}h_{\gamma}^{\gamma}
+\end{equation}
+
+ \subsection{contract only deltas}
+
+Basic case:
+\begin{equation}
+\delta^{\nu }_{\alpha} \partial_{\mu} h^{\mu}_{\alpha}\partial_{\nu} h^{\gamma}_{\gamma}  \rightarrow \partial_{\mu}h_{\alpha}^{\mu} \partial_{\alpha}h_{\gamma}^{\gamma}
+\end{equation}
+
+ \subsection{contract only etas}
+
+Basic case:
+\begin{equation}
+\eta^{\nu \alpha} \partial_{\mu} h^{\mu}_{\alpha}\partial_{\nu} h^{\gamma}_{\gamma} 	 \rightarrow  \partial_{\mu}h^{\mu \nu} \partial_{\nu}h_{\gamma}^{\gamma}
+\end{equation}
+
+Alternative cases:
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Factor}
+ \subsection{factor out GCF}
+
+Basic case: 
+\begin{equation}
+ \(3Y \partial_{\nu}h^{\mu \nu} + Y \partial^{\mu} h^{\nu }_{\nu}\) \rightarrow
+ Y \(3 \partial_{\nu}h^{\mu \nu} + \partial^{\mu}h_{\nu}^{\nu} \)
+\end{equation}
+
+Alternative cases:
+\begin{equation}
+\(X \partial_{\nu}h^{\mu \nu} + Y \partial_{\nu} h^{\mu \nu}\) \rightarrow
+\partial_{\nu}h^{\mu \nu} \(X +Y \)
+\end{equation}
+
+*** sum
+\begin{equation}
+\(X A^{\alpha}_{\alpha} + Y A^{\alpha}_{\alpha}\) \rightarrow
+A_{\alpha}^{\alpha} \(X +Y \)
+\end{equation}
+
+***  no outer brackets…
+\begin{equation}
+X A^{\alpha}_{\alpha} + Y A^{\alpha}_{\alpha}  \rightarrow
+A_{\alpha}^{\alpha} \(X +Y \)
+\end{equation}
+
+\begin{equation}
+\(X \partial_{\gamma}h^{\mu \gamma} + Y \partial_{\nu} h^{\mu \nu}\) \rightarrow
+\partial_{\gamma}h^{\mu \gamma} \(X +Y \)
+\end{equation}
+
+
+\begin{equation}
+\(X \partial_{\gamma}h^{\mu \gamma} A^{\alpha}_{\alpha} + Y \partial_{\nu} h^{\mu \nu}\) \rightarrow
+ \partial_{\gamma}h^{\mu \gamma} \(X A_{\alpha}^{\alpha} +Y \)
+\end{equation}
+
+\begin{equation}
+\(X \partial_{\gamma}h^{\mu \gamma} + Y h^{\gamma \nu}\) \rightarrow
+\(X \partial_{\gamma}h^{\mu \gamma} +Y h^{\gamma \nu} \)
+\end{equation}
+
+\begin{equation}
+\(\frac{1}{2} \partial_{\gamma}h^{\mu \gamma} + \frac{1}{4}  h^{\gamma \nu}\) \rightarrow
+\frac{1}{4} \(2 \partial_{\gamma}h^{\mu \gamma} + h^{\gamma \nu} \)
+\end{equation}
+
+*** factor of 1 (implied)
+\begin{equation}
+\(X \partial_{\nu}h^{\mu \nu} + \partial_{\nu} h^{\mu \nu}\) \rightarrow
+\partial_{\nu}h^{\mu \nu} \(X +1 \)
+\end{equation}
+
+\subsection{factor out user specified term}
+
+*** smaller numerical
+\begin{equation}
+\(\frac{1}{2} \partial_{\gamma}h^{\mu \gamma} + \frac{1}{4}  h^{\gamma \nu}\) , \frac{1}{8} \rightarrow
+\frac{1}{8} \(4 \partial_{\gamma}h^{\mu \gamma} +2 h^{\gamma \nu} \)
+\end{equation}
+
+*** bigger numerical
+
+\begin{equation}
+\(\frac{1}{2} \partial_{\gamma}h^{\mu \gamma} + \frac{1}{4}  h^{\gamma \nu}\) , 8 \rightarrow
+8 \(\frac{1}{16} \partial_{\gamma}h^{\mu \gamma} +\frac{1}{32} h^{\gamma \nu} \)
+\end{equation}
+
+
+*** smaller tensor\\
+
+\begin{equation}
+\(X \partial_{\gamma}h^{\mu \gamma} A^{\gamma} + Y \partial_{\nu} h^{\mu \nu}A^{\gamma}\) , A^{\gamma} \rightarrow
+A^{\gamma} \(X \partial_{\gamma}h^{\mu \gamma} +Y \partial_{\nu}h^{\mu \nu} \)
+\end{equation}
+
+
+*** not included tensor\\
+
+\begin{equation}
+X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu}  , A^{alpha} \rightarrow
+\(X \partial_{\mu}\partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} \)
+\end{equation}
+
+
+*** different index\\
+
+(***decide if this should be the expected behaviour (tensor logic question)) 
+\begin{equation}
+\(X \partial_{\gamma}h^{\mu \gamma} A^{\gamma} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} \), A^{\alpha} \rightarrow 
+\(X \partial_{\gamma}h^{\mu \gamma} A^{\gamma} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} \)
+\end{equation}
+
+*** make sure it’s recognizing not to factor out tensors under partials\\
+\begin{equation}
+\(X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} \), \partial_{\nu}h^{\mu \nu} \rightarrow
+\partial_{\nu}h^{\mu \nu} \(Y A^{\gamma} \)+\(X \partial_{\mu}\partial_{\nu}h^{\mu \nu} \)
+\end{equation}
+
+*** what about if there’s a different index with the same sum pattern, and what about coefficient of 1\\
+\begin{equation}
+\(X A^{\alpha}_{\alpha} + A^{\alpha}_{\alpha}\) , A^{\beta}_{\beta} \rightarrow
+A_{\beta}^{\beta} \(X +1 \)
+\end{equation}
+
+
+— variation, no brackets…\\
+\begin{equation}
+X A^{\alpha}_{\alpha} + A^{\alpha}_{\alpha} , A^{\beta}_{\beta} \rightarrow
+A_{\beta}^{\beta} \(X +1 \)
+\end{equation}
+
+\section{Replace}
+\subsection{replace indices}
+
+Basic case:\\
+
+*** single replacement
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu \rightarrow \alpha \rightarrow 
+\(4 X \partial_{\alpha}\partial_{\nu}h^{\alpha \nu} +Y \partial_{\nu}h^{\alpha \nu} A^{\gamma} \)
+\end{equation}
+
+*** list replacement
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu, \nu, \gamma \rightarrow \alpha, \beta, \xi \rightarrow 
+ \(4 X \partial_{\alpha}\partial_{\beta}h^{\alpha \beta} +Y \partial_{\beta}h^{\alpha \beta} A^{\xi} \)
+\end{equation}
+
+*** replace index that doesn’t exist
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu, \nu, \xi \rightarrow \alpha, \beta, \chi \rightarrow 
+\(4 X \partial_{\alpha}\partial_{\beta}h^{\alpha \beta} +Y \partial_{\beta}h^{\alpha \beta} A^{\gamma} \)
+\end{equation}
+
+*** what if it’s not there but it’s one of the replacement indices
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu, \nu, \alpha \rightarrow \alpha, \beta, \xi \rightarrow 
+\(4 X \partial_{\alpha}\partial_{\beta}h^{\alpha \beta} +Y \partial_{\beta}h^{\alpha \beta} A^{\gamma} \)
+\end{equation}
+
+*** long number of indices (mismatched list lengths) 
+
+
+
+
+\subsection{replace terms}
+
+Basic case:
+
+*** direct replacement
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , A^{\gamma} \rightarrow B^{\gamma} \rightarrow  
+\(4 X \partial_{\mu}\partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} B^{\gamma} \)
+\end{equation}
+
+{\color{red}
+*** more complicated replacement term
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} ,  \partial_{\nu}h^{\mu \nu} \rightarrow \partial_{\gamma} V^{\mu \gamma}  ISSUE:" Equation: indices to replace do not match in length!
+Please email jbrucero@uwo.ca for if you think this is a bug"
+\end{equation}
+}
+
+{\color{red}
+\begin{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} ,  \partial_{\nu}h^{\mu \nu} \rightarrow  V^{\mu} \rightarrow ISSUE:" Equation: indices to replace do not match in length!
+Please email jbrucero@uwo.ca for if you think this is a bug"
+\end{equation}
+}
+
+
+— ***probably one of the most complicated algorithms, need to look over in detail then finish cases***\\
+
+
+
+
+
+
+
+
+
+\section{Sort}
+\subsection{ combine like terms differing only by a numerical factor}
+
+Basic case:
+\begin{equation}
+3A^{\gamma} + \frac{5}{7} A^{\gamma} \rightarrow 
+\(\frac{26}{7} A^{\gamma} \)
+\end{equation}
+
+*** fraction simplification
+\begin{equation}
+3A^{\gamma} + \frac{4}{2} A^{\gamma}  \rightarrow 
+\(5 A^{\gamma} \)
+\end{equation}
+
+*** coefficient of 1 (implied)
+\begin{equation}
+A^{\gamma} + A^{\gamma} \rightarrow 
+\(2 A^{\gamma} \)
+\end{equation}
+
+*** more complicated term
+\begin{equation}
+3\partial_{\gamma}A^{\gamma} + \frac{5}{7} \partial_{\beta}A^{\beta} \rightarrow 
+\(\frac{26}{7} \partial_{\gamma}A^{\gamma} \)
+\end{equation}
+
+\begin{equation}
+3\partial_{\gamma}\partial^{\mu}A^{\gamma}_{\nu \mu} + 7 \partial_{\beta}\partial^{\zeta}A^{\beta}_{\nu \zeta} \rightarrow 
+ \(10 \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} \)
+\end{equation}
+
+*** not all terms combine 
+\begin{equation}
+3\partial_{\gamma}A^{\gamma} + 4 A^{\chi}+ \frac{5}{7} \partial_{\beta}A^{\beta} \rightarrow 
+ \(\frac{26}{7} \partial_{\gamma}A^{\gamma} +4 A^{\chi} \)
+\end{equation}
+
+*** things that shouldn’t combine\\
+
+*** different tensors
+\begin{equation}
+3A^{\gamma} + \frac{5}{7} B^{\gamma} \rightarrow  
+\(3 A^{\gamma} +\frac{5}{7} B^{\gamma} \)
+\end{equation}
+
+*** not differing only by numerical factor
+\begin{equation}
+3XA^{\gamma} + 7 A^{\gamma}  \rightarrow 
+\(3 X A^{\gamma} +7 A^{\gamma} \)
+\end{equation}
+
+***different free indices
+\begin{equation}
+A^{\beta} + A^{\alpha} \rightarrow 
+\( A^{\beta} + A^{\alpha} \)
+\end{equation}
+
+***different number of partials
+\begin{equation}
+3\partial_{\gamma}A^{\gamma}_{\nu} + 7 \partial_{\beta}\partial^{\zeta}A^{\beta}_{\nu \zeta} \rightarrow 
+\(3 \partial_{\gamma}A_{\nu}^{\gamma} +7 \partial_{\beta}\partial^{\zeta}A_{\nu \zeta}^{\beta} \)
+\end{equation}
+
+*** different position of free index
+\begin{equation}
+3\partial_{\gamma}\partial^{\mu}A^{\gamma}_{\nu \mu} + 7 \partial_{\beta}\partial^{\zeta}A^{\beta}_{\zeta \nu} \rightarrow 
+\(3 \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} +7 \partial_{\beta}\partial^{\zeta}A_{\zeta \nu}^{\beta} \)
+\end{equation}
+
+***(Unless A is a symmetric tensor, in which case):
+\begin{equation}
+3\partial_{\gamma}\partial^{\mu}A^{\gamma}_{\nu \mu} + 7 \partial_{\beta}\partial^{\zeta}A^{\beta}_{\zeta \nu} \rightarrow 
+\(10 \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} \)
+\end{equation}
+
+
+
+
+
+\subsection{ combine like terms differing by any (numerical or symbolic) coefficient}
+
+
+*** basic case
+\begin{equation}
+3XA^{\gamma} + 7 A^{\gamma} \rightarrow 
+\(\(3X+7\) A^{\gamma} \)
+\end{equation}
+
+*** more complicated term
+
+\begin{equation}
+3B \partial_{\gamma}A^{\gamma} + \frac{5}{7} V \partial_{\beta}A^{\beta} \rightarrow 
+\(\(3B+\frac{5}{7}V\) \partial_{\gamma}A^{\gamma} \)
+\end{equation}
+
+\begin{equation}
+3B \partial_{\gamma}A^{\gamma} + \frac{5}{7} B \partial_{\beta}A^{\beta} \rightarrow 
+\(\frac{26}{7}B \partial_{\gamma}A^{\gamma} \)
+\end{equation}
+
+\begin{equation}
+3M\partial_{\gamma}\partial^{\mu}A^{\gamma}_{\nu \mu} + 7X \partial_{\beta}\partial^{\zeta}A^{\beta}_{\nu \zeta} \rightarrow 
+\(\(3M+7X\) \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} \)
+\end{equation}
+
+*** not all terms combine 
+
+\begin{equation}
+3V\partial_{\gamma}A^{\gamma} + 4 ZA^{\chi}+ \frac{5}{7} N \partial_{\beta}A^{\beta} \rightarrow 
+\(\(3V+\frac{5}{7}N\) \partial_{\gamma}A^{\gamma} +4Z A^{\chi} \)
+\end{equation}
+
+***shouldn’t combine
+\begin{equation}
+3B \partial_{\gamma}A^{\gamma} + \frac{5}{7} V^{\alpha}_{\alpha} \partial_{\beta}A^{\beta} \rightarrow  (I think this is what I want but should double check/ see if an improvement combine these too \rightarrow would this be helpful?)
+\(3B \partial_{\gamma}A^{\gamma} +\frac{5}{7} V_{\alpha}^{\alpha} \partial_{\beta}A^{\beta} \)
+\end{equation}
+
+*** different tensors
+\begin{equation}
+3CA^{\gamma} + \frac{5}{7} DB^{\gamma} \rightarrow  
+\(3C A^{\gamma} +\frac{5}{7}D B^{\gamma} \)
+\end{equation}
+
+***different free indices
+\begin{equation}
+XA^{\beta} + A^{\alpha} \rightarrow 
+\(X A^{\beta} + A^{\alpha} \)
+\end{equation}
+
+***different number of partials
+\begin{equation}
+3\partial_{\gamma}A^{\gamma}_{\nu} + 7M \partial_{\beta}\partial^{\zeta}A^{\beta}_{\nu \zeta} \rightarrow 
+\(3 \partial_{\gamma}A_{\nu}^{\gamma} +7M \partial_{\beta}\partial^{\zeta}A_{\nu \zeta}^{\beta} \)
+\end{equation}
+
+*** different position of free index
+\begin{equation}
+3V\partial_{\gamma}\partial^{\mu}A^{\gamma}_{\nu \mu} + 7L \partial_{\beta}\partial^{\zeta}A^{\beta}_{\zeta \nu} \rightarrow 
+\(3V \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} +7L \partial_{\beta}\partial^{\zeta}A_{\zeta \nu}^{\beta} \)
+\end{equation}
+
+***(Unless A is a symmetric tensor, in which case):
+\begin{equation}
+3V\partial_{\gamma}\partial^{\mu}A^{\gamma}_{\nu \mu} + 7L \partial_{\beta}\partial^{\zeta}A^{\beta}_{\zeta \nu} \rightarrow 
+\(\(3V+7L\) \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} \)
+\end{equation}
+
+
+ \subsection{sort the tensors in each term by number of derivatives (least to greatest)}
+
+\begin{equation}
+\partial_{\gamma} \square G^{\nu \gamma} \partial_{\beta}\partial^{\xi} M^{\beta}_{\xi}   \square \square \partial_{\chi} X^{\kappa \zeta}_{\nu}  \partial_{\mu}T^{\mu} \rightarrow 
+\partial_{\mu}T^{\mu} \partial_{\beta}\partial^{\xi}M_{\xi}^{\beta} \partial_{\gamma}\square G^{\nu \gamma} \partial_{\chi}\square \square X_{\nu}^{\kappa \zeta}
+\end{equation}
+
+
+***What about with coefficients
+\begin{equation}
+4A\partial_{\gamma} \square G^{\nu \gamma} \partial_{\beta}\partial^{\xi} M^{\beta}_{\xi}   \square \square \partial_{\chi} X^{\kappa \zeta}_{\nu}  \partial_{\mu}T^{\mu} \rightarrow WORKING
+4 A \partial_{\mu}T^{\mu} \partial_{\beta}\partial^{\xi}M_{\xi}^{\beta} \partial_{\gamma}\square G^{\nu \gamma} \partial_{\chi}\square \square X_{\nu}^{\kappa \zeta}
+\end{equation}
+
+***What about multiple terms and coefficients
+\begin{equation}
+4A\partial_{\gamma} \square G^{\nu \gamma} \partial_{\beta}\partial^{\xi} M^{\beta}_{\xi} +
+  \frac{7}{8} C \square \square \partial_{\chi} X^{\kappa \zeta}_{\nu}  \partial_{\mu}T^{\mu} \rightarrow 
+\(4 A \partial_{\beta}\partial^{\xi}M_{\xi}^{\beta} \partial_{\gamma}\square G^{\nu \gamma} +\frac{7}{8} C \partial_{\mu}T^{\mu} \partial_{\chi}\square \square X_{\nu}^{\kappa \zeta} \)
+\end{equation}
+
+***And with brackets 
+\begin{equation}
+\( 4A\partial_{\gamma} \square G^{\nu \gamma} \partial_{\beta}\partial^{\xi} M^{\beta}_{\xi}\)\(
+  \frac{7}{8} C \square \square \partial_{\chi} X^{\kappa \zeta}_{\nu}  \partial_{\mu}T^{\mu} \) \rightarrow 
+\(4 A \partial_{\beta}\partial^{\xi}M_{\xi}^{\beta} \partial_{\gamma}\square G^{\nu \gamma} \)\(\frac{7}{8} C \partial_{\mu}T^{\mu} \partial_{\chi}\square \square X_{\nu}^{\kappa \zeta} \)
+ \end{equation}
+
+
+
+ \subsection{sort terms by number of derivatives (least to greatest)}
+
+\begin{equation}
+\partial_{\gamma} \partial_{\kappa}A^{\gamma} + \partial^{\chi}B_{\chi} + C^{} \rightarrow 
+\( C^{} + \partial^{\chi}B_{\chi} + \partial_{\gamma}\partial_{\kappa}A^{\gamma} \)
+\end{equation}
+
+***with brackets
+\begin{equation}
+\(\partial_{\gamma} \partial_{\kappa}A^{\gamma} + \partial^{\chi}B_{\chi} + C^{}\)  \rightarrow 
+\( C^{} + \partial^{\chi}B_{\chi} + \partial_{\gamma}\partial_{\kappa}A^{\gamma} \)
+\end{equation}
+
+***with coefficients
+\begin{equation}
+\(  9\partial^{\chi}B_{\chi} +\frac{1}{2}T \partial_{\gamma}\partial_{\kappa}A^{\gamma} +M C^{} \) \rightarrow 
+\(M C^{} +9 \partial^{\chi}B_{\chi} +\frac{1}{2} T \partial_{\gamma}\partial_{\kappa}A^{\gamma} \)
+\end{equation}
+
+*** with multiplied terms
+
+\begin{equation}
+\(\partial_{\gamma} \partial_{\kappa}A^{\gamma}  + \partial_{\omega}G^{} \)\( \partial^{\chi}B_{\chi} + C^{} \) \rightarrow 
+\( \partial_{\omega}G^{} + \partial_{\gamma}\partial_{\kappa}A^{\gamma} \)\( C^{} + \partial^{\chi}B_{\chi} \)
+\end{equation}
+
+** with multiple tensors per term (I think it goes by either least or greatest…)\\
+
+\begin{equation}
+\(\partial_{\gamma} \partial_{\kappa}\square A^{\gamma}\partial_{\omega}G^{} + \square \partial^{\chi}B_{\chi} + \square X_{\xi}+ \square V_{}C^{} \) \rightarrow 
+\( \square X_{\xi} + \square V^{} C^{} + \partial^{\chi}\square B_{\chi} + \partial_{\gamma}\partial_{\kappa}\square A^{\gamma} \partial_{\omega}G^{} \)
+\end{equation}
+
+(must sort by total)\\
+\begin{equation}
+ \partial_{\xi}H^{}\partial_{\omega}G^{}\partial^{\xi}M^{} + \square A^{} \rightarrow 
+\( \square A^{} + \partial_{\xi}H^{} \partial_{\omega}G^{} \partial^{\xi}M^{} \)
+\end{equation}
+
+*** interesting thing with brackets - should look into at some point\\
+-> At the very least it should be a warning and not make it look like it worked...\\
+
+
+*** same idea but with summation -> INTERESTING BRACKET STUFF - is it important??\\
+
+{\color{red}
+\begin{equation}
+(X A^{\alpha}_{\alpha} + Y A^{\alpha}_{\alpha}) \rightarrow NOT WORKING
+(X + Y ) A_{\alpha}^{\alpha} A_{\alpha}^{\alpha}
+\end{equation}
+}
+
+— variations on above:
+{\color{red}
+\begin{equation}
+(X \partial_{\mu}A^{\alpha}_{\alpha} + Y \partial_{\mu} A^{\alpha}_{\alpha}) \rightarrow same issue
+(X + Y ) \partial_{\mu}A_{\alpha}^{\alpha} \partial_{\mu}A_{\alpha}^{\alpha}
+\end{equation}
+}
+
+{\color{red}
+\begin{equation} 
+(X \partial_{\alpha}A^{\alpha} + Y \partial_{\alpha} A^{\alpha}) \rightarrow ISSUE
+(X + Y ) \partial_{\alpha}A^{\alpha} \partial_{\alpha}A^{\alpha}
+\end{equation}
+}
+
+\begin{equation}
+(X \partial_{\alpha}h^{\alpha} + Y \partial_{\alpha} h^{\alpha}) \rightarrow (X + Y ) \partial_{\alpha}h^{\alpha} \partial_{\alpha}h^{\alpha}
+\end{equation}
+
+
+\begin{equation}
+(X \partial_{\alpha}h^{\alpha \beta} + Y \partial_{\alpha} h^{\alpha \beta}) \rightarrow
+(X + Y ) \partial_{\alpha}h^{\alpha \beta} \partial_{\alpha}h^{\alpha \beta}
+\end{equation}
+
+
+
+
+
+
+
+
+\end{document}
