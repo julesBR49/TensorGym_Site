@@ -1,4 +1,5 @@
 import copy
+from Tensors.functions import displayPartialList
 class Variation:
     def __init__(self, num, den, kind="\\partialv", partials=None, sign="+", brackets=False):
         self.brackets = brackets
@@ -117,8 +118,9 @@ class Variation:
     def __repr__(self):
         self.changeTrueDen(self.getDen())
         string = " "
-        for partial in self.partials:
-            string = string + repr(partial)
+        string += displayPartialList(self.partials)
+        # for partial in self.partials:
+        #     string = string + repr(partial)
         if self.brackets:
             string = string + "\\("
         string = string + "\\frac{ " + self.kind

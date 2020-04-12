@@ -4,7 +4,9 @@ from Tensors.Fraction import Fraction
 from Tensors.TensorCoefficients import TensorCoefficients
 from Tensors.SymbolCo import SymbolCo
 from Tensors.Coefficient import Coefficient
+from Tensors.functions import displayPartialList
 import copy
+
 class Summation:
 
     def __init__(self, sums=None, partials=None, sign="+", brackets=False):
@@ -157,8 +159,9 @@ class Summation:
         strx = ""
         if self.sign == "-":
             strx += self.sign
-        for i in range(len(self.partials)):
-            strx += repr(self.partials[i])
+        # for i in range(len(self.partials)):
+        #     strx += repr(self.partials[i])
+        strx += displayPartialList(self.partials)
         if self.brackets:
             strx += "\\("
         for i in range(len(self.summation)):

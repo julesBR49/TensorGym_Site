@@ -348,11 +348,13 @@ Alternate cases:\\
 \partial_{\mu} A \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)   \rightarrow \partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} \)
 \end{equation}
 
-{\color{red}
+
 \begin{equation}
-A \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) 	-> (NOT working) FIXED \partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} \)
+A \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) 	
+\rightarrow
+\partial_{\mu}\(YA \partial_{\nu}h^{\mu \nu} +XA \partial^{\mu}h_{\nu}^{\nu} \)
 \end{equation}
-}
+
 
 \begin{equation}
 4 \partial_{\mu}  \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)   \rightarrow \partial_{\mu}\(4 Y \partial_{\nu}h^{\mu \nu} +4 X \partial^{\mu}h_{\nu}^{\nu} \)
@@ -371,10 +373,12 @@ A \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}
 \end{equation}
 
 *** sum of mixed constants
-\begin{equation}
-\(A \eta^{\gamma \epsilon} + A5B + 56 \delta^{\phi}_{\xi} \) \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\) \rightarrow
-\partial_{\mu}\(YA \eta^{\gamma \epsilon} \partial_{\nu}h^{\mu \nu} +5 YAB \partial_{\nu}h^{\mu \nu} +56 Y \delta_{\xi}^{\phi} \partial_{\nu}h^{\mu \nu} +XA \eta^{\gamma \epsilon} \partial^{\mu}h_{\nu}^{\nu} +5 XAB \partial^{\mu}h_{\nu}^{\nu} +56 X \delta_{\xi}^{\phi} \partial^{\mu}h_{\nu}^{\nu} \)
-\end{equation}
+\begin{multline}
+\(A \eta^{\gamma \epsilon} + A5B + 56 \delta^{\phi}_{\xi} \) \partial_{\mu} \(Y \partial_{\nu}h^{\mu \nu} + X \partial^{\mu} h^{\nu }_{\nu}\)\\
+ \rightarrow
+\partial_{\mu} \(YA \eta^{\gamma \epsilon} \partial_{\nu} h^{\mu \nu} +5 YAB \partial_{\nu} h^{\mu \nu} +56 Y \delta_{\xi}^{\phi} \partial_{\nu} h^{\mu \nu} +XA \eta^{\gamma \epsilon} \partial^{\mu} h_{\nu}^{\nu} +5 XAB \partial^{\mu} h_{\nu}^{\nu} \\
++56 X \delta_{\xi}^{\phi} \partial^{\mu} h_{\nu}^{\nu} \)
+\end{multline}
 
 TODO: decide on how partials behave then implement test cases for them\\
 Question: do all nodes have summation objects or do some have multgroup objects?? – they appear to all be summation objects\\
@@ -455,16 +459,18 @@ Also need to test adding summations, with and without partials, and subtracting 
 
 
 
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Contract}
+
+%%%
+
  \subsection{contract etas and deltas}
 \begin{equation}
 \delta^{\gamma}_{\beta} \eta^{\nu \alpha} \partial_{\mu} h^{\mu}_{\alpha}\partial_{\nu} h^{\beta}_{\gamma}  \rightarrow  \partial_{\mu}h^{\mu \nu} \partial_{\nu}h_{\gamma}^{\gamma}
 \end{equation}
+
+%%%
 
  \subsection{contract only deltas}
 
@@ -472,6 +478,8 @@ Basic case:
 \begin{equation}
 \delta^{\nu }_{\alpha} \partial_{\mu} h^{\mu}_{\alpha}\partial_{\nu} h^{\gamma}_{\gamma}  \rightarrow \partial_{\mu}h_{\alpha}^{\mu} \partial_{\alpha}h_{\gamma}^{\gamma}
 \end{equation}
+
+%%%
 
  \subsection{contract only etas}
 
@@ -492,9 +500,12 @@ Alternative cases:
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Factor}
+
+%%%
+
  \subsection{factor out GCF}
 
 Basic case: 
@@ -547,6 +558,8 @@ A_{\alpha}^{\alpha} \(X +Y \)
 \(X \partial_{\nu}h^{\mu \nu} + \partial_{\nu} h^{\mu \nu}\) \rightarrow
 \partial_{\nu}h^{\mu \nu} \(X +1 \)
 \end{equation}
+
+%%%
 
 \subsection{factor out user specified term}
 
@@ -607,7 +620,13 @@ X A^{\alpha}_{\alpha} + A^{\alpha}_{\alpha} , A^{\beta}_{\beta} \rightarrow
 A_{\beta}^{\beta} \(X +1 \)
 \end{equation}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Replace}
+
+%%%
+
 \subsection{replace indices}
 
 Basic case:\\
@@ -639,7 +658,7 @@ Basic case:\\
 *** long number of indices (mismatched list lengths) 
 
 
-
+%%%
 
 \subsection{replace terms}
 
@@ -672,12 +691,12 @@ Please email jbrucero@uwo.ca for if you think this is a bug"
 
 
 
-
-
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Sort}
+
+%%%
+
 \subsection{ combine like terms differing only by a numerical factor}
 
 Basic case:
@@ -754,8 +773,7 @@ A^{\beta} + A^{\alpha} \rightarrow
 \end{equation}
 
 
-
-
+%%%
 
 \subsection{ combine like terms differing by any (numerical or symbolic) coefficient}
 
@@ -826,6 +844,7 @@ XA^{\beta} + A^{\alpha} \rightarrow
 \(\(3V+7L\) \partial_{\gamma}\partial^{\mu}A_{\nu \mu}^{\gamma} \)
 \end{equation}
 
+%%%
 
  \subsection{sort the tensors in each term by number of derivatives (least to greatest)}
 
@@ -855,7 +874,7 @@ XA^{\beta} + A^{\alpha} \rightarrow
 \(4 A \partial_{\beta}\partial^{\xi}M_{\xi}^{\beta} \partial_{\gamma}\square G^{\nu \gamma} \)\(\frac{7}{8} C \partial_{\mu}T^{\mu} \partial_{\chi}\square \square X_{\nu}^{\kappa \zeta} \)
  \end{equation}
 
-
+%%%
 
  \subsection{sort terms by number of derivatives (least to greatest)}
 

@@ -55,6 +55,7 @@ class Equation:
         self.tree.setEqIndicator(self.eqIndicator)
         self.indexType = self.findType()
         self.indexSet = self.findIndexSet()
+        self.replaceSquares()
         # print(self.indexSet)
 
     def getDel(self):
@@ -95,6 +96,32 @@ class Equation:
                     indicesRepr.add(repr(ind))
                 indexSet = indexSet.difference(indicesRepr)
         return indexSet
+
+    def replaceSquares(self):
+        elements = self.tree.traverse()
+        for element in elements:
+            if type(element) is Summation:
+                # sums = element.getSums()
+                # for mult in sums:
+                #     partials = mult.getAllPartials()
+                #     print(mult)
+                #     print(partials)
+                #     for partial in partials:
+                #         if partial.isSquare():
+                #             newInd = self.indexSet.pop()
+                #             partial.setIndex(newInd)
+                #             partial.getSquarePartner().setIndex(newInd)
+                indices = element.getIndices()
+                for index in indices:
+                    if "square" in index.getSymbol():
+                        # oldSym = index.getSymbol()
+                        newSym = self.indexSet.pop()
+                        index.changeIndex(newSym)
+                        # for ind2 in indices:
+                        #     if ind2.getSymbol() == oldSym:
+                        #         ind2.changeIndex(newSym)
+                        index.getPartnerInCrime().changeIndex(newSym)
+                    
 
 
     def getTree(self):
@@ -177,6 +204,7 @@ class Equation:
         #return
         return root  # return the ROOT (so can act as child node later, or accessor for tree)
 
+
     ##
     # dealWithSummation takes in latex with info for one summation object and interprets it
     # @param strx a string which is just one summation
@@ -210,8 +238,12 @@ class Equation:
             sums.setBrackets(True)  # if there are preceding partials, must have brackets
             if strx.startswith("\\square"):
                 strx = strx.replace("\\square", "", 1)
-                sums.addPartials(Partial(Index("\\square" + camryn, 0)))
-                sums.addPartials(Partial(Index("\\square" + camryn, 1)))
+                partDown = Partial(Index("\\square" + camryn, 0))
+                partUp = Partial(Index("\\square" + camryn, 1))
+                partDown.setSquarePartner(partUp)
+                partUp.setSquarePartner(partDown)
+                sums.addPartials(partDown)
+                sums.addPartials(partUp)
                 camryn = camryn + "s"
             else:
                 sums.addPartials(self.dealWithPartial(strx, 0)[0])
@@ -417,8 +449,12 @@ class Equation:
                     begSymb += -subtracted  # decrease begSymb so it still references the same (information) position in strx
                 while "\\square" in strx[:begSymb]:
                     strx = strx.replace("\\square", "", 1)
-                    partialsT.append(Partial(Index("\\square" + str(cassiopea), 0)))
-                    partialsT.append(Partial(Index("\\square" + str(cassiopea), 1)))
+                    partDown = Partial(Index("\\square" + str(cassiopea), 0))
+                    partUp = Partial(Index("\\square" + str(cassiopea), 1))
+                    partDown.setSquarePartner(partUp)
+                    partUp.setSquarePartner(partDown)
+                    partialsT.append(partDown)
+                    partialsT.append(partUp)
                     cassiopea += 1
                     begSymb += -len("\\square")
                 tensors.append(Tensor(tensorSymbol, SymmetryProperties(indices), partialsT, "+", False, self.symTens))
@@ -442,8 +478,12 @@ class Equation:
                 partials.append(el)
         while "\\square" in strx:
             strx = strx.replace("\\square", "", 1)
-            partials.append(Partial(Index("\\square" + str(cassiopea), 0)))
-            partials.append(Partial(Index("\\square" + str(cassiopea), 1)))
+            partDown = Partial(Index("\\square" + str(cassiopea), 0))
+            partUp = Partial(Index("\\square" + str(cassiopea), 1))
+            partDown.setSquarePartner(partUp)
+            partUp.setSquarePartner(partDown)
+            partials.append(partDown)
+            partials.append(partUp)
             cassiopea += 1
         # **************************************************************
         # deal with anything that's left
@@ -838,8 +878,12 @@ class Equation:
         candid = 1
         while strx.startswith("\\partial") or strx.startswith("\\square"):  # if starts with a partial, partial must be attached to variation
             if strx.startswith("\\square"):
-                partials.append(Partial(Index("\\square" + str(candid), 0)))
-                partials.append(Partial(Index("\\square" + str(candid), 1)))
+                partDown = Partial(Index("\\square" + str(candid), 0))
+                partUp = Partial(Index("\\square" + str(candid), 1))
+                partDown.setSquarePartner(partUp)
+                partUp.setSquarePartner(partDown)
+                partials.append(partDown)
+                partials.append(partUp)
                 candid += 1
             else:
                 partials.append(self.dealWithPartial(strx, 0)[0])

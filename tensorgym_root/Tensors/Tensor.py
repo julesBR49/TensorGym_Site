@@ -4,6 +4,7 @@ from Tensors.SymmetryProperties import SymmetryProperties
 from Tensors.IndexException import IndexException
 from Tensors.Index import Index
 from Tensors.Gemma import Gemma
+from Tensors.functions import displayPartialList
 import copy
 class Tensor:
 
@@ -537,8 +538,9 @@ class Tensor:
 
     def __repr__(self):
         strx = ""
-        for p in self.partials:
-            strx = strx + repr(p)
+        strx += displayPartialList(self.partials)
+        # for p in self.partials:
+        #     strx = strx + repr(p)
         strx = strx + self.symbol
         strx = strx + repr(self.symmetry)
         return strx

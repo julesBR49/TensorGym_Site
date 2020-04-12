@@ -9,6 +9,7 @@ from Tensors.Summation import Summation
 from Tensors.TensorCoefficients import TensorCoefficients
 from Tensors.Coefficient import Coefficient
 from Tensors.Gemma import Gemma
+from Tensors.functions import displayPartialList
 import copy
 class MultGroup:
     ##
@@ -204,6 +205,18 @@ class MultGroup:
 
     def getPartials(self):
         return self.partials
+
+    def getAllPartials(self):
+        p_list = []
+        p_list += self.partials
+        # p_list += self.outerPartials
+        for ten in self.tensors:
+            p_list += ten.getPartials()
+        for var in self.variations:
+            p_list += var.getPartials()
+        return p_list
+
+
 
     def getMinLenP(self):
         return self.minLenP
@@ -1445,6 +1458,7 @@ class MultGroup:
             strx += repr(el) + " "
         for el in self.variations:
             strx += repr(el) + " "
-        for el in self.partials:
-            strx += repr(el) + " "
+        strx += displayPartialList(self.partials)
+        # for el in self.partials:
+        #     strx += repr(el) + " "
         return strx

@@ -51,7 +51,7 @@ class SimpleRepresentationTest(unittest.TestCase):
     # complicated bracket nesting and tensor indices, multiplication, and partials
     def test_rep10(self):
         eq = Equation("\\partial_{\\zeta}\\( G^{\\gamma} \\) \\partial^{\\zeta} \\square \\(\\( A^{} \\)- \\( B_{\\kappa}^{\\kappa} - \\( C^{} \\)\\)\\)+\\(\\( A^{\\gamma} - D^{\\gamma} \\)- B_{\\alpha}^{\\alpha \\gamma} \\)")
-        self.assertEqual(repr(eq),"\\partial_{\\zeta}\\( G^{\\gamma} \\) \\partial^{\\zeta} \\square \\(\\( A^{} \\)- \\( B_{\\kappa}^{\\kappa} - \\( C^{} \\)\\)\\)+\\(\\( A^{\\gamma} - D^{\\gamma} \\)- B_{\\alpha}^{\\alpha \\gamma} \\)",
+        self.assertEqual(repr(eq),"\\partial_{\\zeta} \\( G^{\\gamma} \\) \\partial^{\\zeta} \\square \\(\\( A^{} \\)- \\( B_{\\kappa}^{\\kappa} - \\( C^{} \\)\\)\\)+\\(\\( A^{\\gamma} - D^{\\gamma} \\)- B_{\\alpha}^{\\alpha \\gamma} \\)",
          'complicated bracket nesting and tensor indices, multiplication, and partials')
 
     # with equals sign
@@ -90,14 +90,14 @@ class SimpleRepresentationTest(unittest.TestCase):
 
     # multiple coefficients 
     def test_rep16(self):
-        eq = Equation("\\(XY Z \\partial_{\\nu}h^{\\mu \\nu} + 6bX \\partial^{\\mu} h^{\\nu }_{\\nu}\\) ")
-        self.assertEqual(repr(eq),"\\(XY Z \\partial_{\\nu}h^{\\mu \\nu} +6 bX \\partial^{\\mu}h_{\\nu}^{\\nu} \\)", 
+        eq = Equation("\\(XY Z \\partial_{\\nu} h^{\\mu \\nu} + 6bX \\partial^{\\mu}  h^{\\nu }_{\\nu}\\) ")
+        self.assertEqual(repr(eq),"\\(XY Z \\partial_{\\nu} h^{\\mu \\nu} +6 bX \\partial^{\\mu} h_{\\nu}^{\\nu} \\)", 
         'multiple coefficients')
 
     # multiple coefficients in unusual order
     def test_rep17(self):
         eq = Equation("\\(XY \\partial_{\\nu}h^{\\mu \\nu}Z + b6X \\partial^{\\mu} h^{\\nu }_{\\nu}\\)")
-        self.assertEqual(repr(eq),"\\(XY Z \\partial_{\\nu}h^{\\mu \\nu} +6 bX \\partial^{\\mu}h_{\\nu}^{\\nu} \\)", 
+        self.assertEqual(repr(eq),"\\(XY Z \\partial_{\\nu} h^{\\mu \\nu} +6 bX \\partial^{\\mu} h_{\\nu}^{\\nu} \\)", 
         'multiple coefficients in unusual order')
 
 

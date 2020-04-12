@@ -91,6 +91,9 @@ class Index:
     def getPartnerInCrime(self):
         return self.partnerInCrime
 
+    def setPartnerInCrime(self, newPart):
+        self.partnerInCrime = newPart
+
     def setSum(self, summ, partner=None):
         self.sum = summ
         self.partnerInCrime = partner
