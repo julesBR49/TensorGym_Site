@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  12 APR 2020 18:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  12 APR 2020 19:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -357,7 +357,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 318--319
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--333
+Underfull \hbox (badness 10000) in paragraph at lines 327--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--333
 
  []
 
@@ -367,22 +372,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 334--335
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--337
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 345--347
+Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 383--386
+Underfull \hbox (badness 10000) in paragraph at lines 381--384
 
  []
 
 
-Overfull \hbox (150.40334pt too wide) detected at line 415
+Overfull \hbox (150.40334pt too wide) detected at line 413
 \OML/cmm/m/it/10 H[]A[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 B[][][]@[]X[] \OT1/c
 mr/m/n/10 + \OML/cmm/m/it/10 M[][][]X \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 Y[] \O
 MS/cmsy/m/n/10 ! []\OML/cmm/m/it/10 HXA[]@[]X[] \OT1/cmr/m/n/10 + \OML/cmm/m/it
@@ -393,52 +393,52 @@ r/m/n/10 + \OML/cmm/m/it/10 HYB[]@[]X[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 HXB[
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 417--420
+Underfull \hbox (badness 10000) in paragraph at lines 415--418
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 458--459
+Underfull \hbox (badness 10000) in paragraph at lines 456--457
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 580--581
+Underfull \hbox (badness 10000) in paragraph at lines 578--579
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 588--589
+Underfull \hbox (badness 10000) in paragraph at lines 586--587
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 596--597
+Underfull \hbox (badness 10000) in paragraph at lines 594--595
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 604--605
+Underfull \hbox (badness 10000) in paragraph at lines 602--603
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 610--611
+Underfull \hbox (badness 10000) in paragraph at lines 608--609
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 617--618
+Underfull \hbox (badness 10000) in paragraph at lines 615--616
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 632--633
+Underfull \hbox (badness 10000) in paragraph at lines 630--631
 
  []
 
 
-Overfull \hbox (184.44434pt too wide) detected at line 678
+Overfull \hbox (184.44434pt too wide) detected at line 676
 \OT1/cmr/m/n/10 4\OML/cmm/m/it/10 X@[]@[]h[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10
  Y@[]h[]A[]; @[]h[] \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 @[]V[]ISSUE \OT1/cmr/m/
 n/10 : "\OML/cmm/m/it/10 Equation \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 indicestor
@@ -447,7 +447,7 @@ T1/cmr/m/n/10 @\OML/cmm/m/it/10 uwo:caforifyouthinkthisisabug\OT1/cmr/m/n/10 "
  []
 
 
-Overfull \hbox (184.92859pt too wide) detected at line 685
+Overfull \hbox (184.92859pt too wide) detected at line 683
 \OT1/cmr/m/n/10 4\OML/cmm/m/it/10 X@[]@[]h[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10
  Y@[]h[]A[]; @[]h[] \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 V[] \OMS/cmsy/m/n/10 ! 
 \OML/cmm/m/it/10 ISSUE \OT1/cmr/m/n/10 : "\OML/cmm/m/it/10 Equation \OT1/cmr/m/
@@ -457,17 +457,17 @@ uthinkthisisabug\OT1/cmr/m/n/10 "
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 689--690
+Underfull \hbox (badness 10000) in paragraph at lines 687--688
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 737--738
+Underfull \hbox (badness 10000) in paragraph at lines 735--736
 
  []
 
 [8]
-Overfull \hbox (186.21283pt too wide) detected at line 815
+Overfull \hbox (186.21283pt too wide) detected at line 813
 \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 B@[]A[] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 
 V[]@[]A[] \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Ithinkthisiswhat
 Iwantbutshoulddoublecheck=seeifanimprovementcombinethesetoo \OMS/cmsy/m/n/10 ! 
@@ -476,22 +476,22 @@ Iwantbutshoulddoublecheck=seeifanimprovementcombinethesetoo \OMS/cmsy/m/n/10 !
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 905--906
+Underfull \hbox (badness 10000) in paragraph at lines 903--904
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 912--913
+Underfull \hbox (badness 10000) in paragraph at lines 910--911
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 918--920
+Underfull \hbox (badness 10000) in paragraph at lines 916--918
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 922--923
+Underfull \hbox (badness 10000) in paragraph at lines 920--921
 
  []
 
@@ -516,7 +516,7 @@ sfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
 ts/symbols/msam10.pfb>
-Output written on test_case_document.pdf (10 pages, 156487 bytes).
+Output written on test_case_document.pdf (10 pages, 156592 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream

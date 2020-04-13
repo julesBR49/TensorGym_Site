@@ -52,6 +52,15 @@ class SimpleMultiplyTest(unittest.TestCase):
         eq.getTree().distributePs(eq.getTree().getRoot())
         self.assertEqual(repr(eq),"\\( \\partial_{\\alpha} \\partial_{\\gamma} A^{\\alpha} B^{\\gamma} + \\partial_{\\gamma} B^{\\gamma} \\partial_{\\alpha} A^{\\alpha} + \\partial_{\\alpha} \\partial_{\\gamma} B^{\\gamma} A^{\\alpha} + \\partial_{\\gamma} A^{\\alpha} \\partial_{\\alpha} B^{\\gamma} \\)", '')
     
+# product rule with squares
+    def test_distributep8(self):
+        eq = Equation("\\square \\(A^{\\alpha}B_{\\alpha}\\)")
+        eq.getTree().distributePs(eq.getTree().getRoot())
+        # self.assertRegex(repr(eq), '\\( \\square A\^\{\\alpha\} B_\{\\alpha\} + \\partial\^\{\\.*\} B_\{\\alpha\} \\partial_\{\\.*\} A\^\{\\alpha\} + \\square B_\{\\\\alpha\} A\^\{\\alpha\} + \\partial\^\{\\\\.*\} A\^\{\\alpha\} \\partial_\{\\.*\} B_\{\\alpha\} \\)', 'product rule with squares')
+        # self.assertRegex(repr(eq), '\\\\( \\\\square A\{\\\\alpha} B_{\\\\alpha} \+ \\\\partial\^{\\\\.*} B_{\\\\alpha} \\\\partial_{\\\\.*} A\^{\\\\alpha} \+ \\\\square B_{\\\\alpha} A\^{\\\\alpha} \+ \\\\partial\^{\\\\.*} A\^{\\\\alpha} \\\\partial_{\\\\.*} B_{\\\\alpha} \\\\)', 'product rule with squares')
+        self.assertRegex(repr(eq), '\\\\\( \\\\square A\^\{\\\\alpha\} B_\{\\\\alpha\} \+ \\\\partial\^\{\\\\.*\} B_\{\\\\alpha\} \\\\partial_\{\\\\.*\} A\^\{\\\\alpha\} \+ \\\\square B_\{\\\\alpha\} A\^\{\\\\alpha\} \+ \\\\partial\^\{\\\\.*\} A\^\{\\\\alpha\} \\\\partial_\{\\\\.*\} B_\{\\\\alpha\} \\\\\)', 'product rule with squares')
+
+
     # def test_distributep1(self):
     #     eq = Equation("")
     #     eq.getTree().distributePs(eq.getTree().getRoot())

@@ -18,7 +18,7 @@ import copy
 
 
 class Indices(Enum):
-    GREEK = ["\\alpha", "\\beta", "\\gamma", "\\epsilon", "\\zeta", "\\theta", "\\iota", "\\kappa", "\\lambda", "\\mu", "\\nu", "\\ksi", "\\xi", "\\omikron", "\\omicron", "\\pi", "\\rho", "\\sigma", "\\tau", "\\upsilon", "\\phi", "\\chi", "\\psi", "\\omega"]
+    GREEK = ["\\alpha", "\\beta", "\\gamma", "\\epsilon", "\\zeta", "\\theta", "\\iota", "\\kappa", "\\lambda", "\\mu", "\\nu", "\\ksi", "\\xi", "\\pi", "\\rho", "\\sigma", "\\tau", "\\upsilon", "\\phi", "\\chi", "\\psi", "\\omega"]
     ROMAN = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 
 class Equation:
