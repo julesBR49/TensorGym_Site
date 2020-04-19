@@ -1086,6 +1086,7 @@ class MultGroup:
     # findTensor returns a pointer to a tensor in the MultGroup object, if the MultGroup contains that tensor
     # @param tensor the tensor to be searched for
     # @return a reference to the tensor, if found, otherwise None
+    # TODO: should this return ALL instances?? Could there be more than one instance???
     #
     def findTensor(self, tensor):
         i = len(self.tensors)-1

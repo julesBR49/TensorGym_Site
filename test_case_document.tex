@@ -631,25 +631,25 @@ Basic case:\\
 
 *** single replacement
 \begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu \rightarrow \alpha \rightarrow 
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} ,\( \mu \rightarrow \alpha \) \rightarrow 
 \(4 X \partial_{\alpha}\partial_{\nu}h^{\alpha \nu} +Y \partial_{\nu}h^{\alpha \nu} A^{\gamma} \)
 \end{equation}
 
 *** list replacement
 \begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu, \nu, \gamma \rightarrow \alpha, \beta, \xi \rightarrow 
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \( \mu, \nu, \gamma \rightarrow \alpha, \beta, \xi \) \rightarrow 
  \(4 X \partial_{\alpha}\partial_{\beta}h^{\alpha \beta} +Y \partial_{\beta}h^{\alpha \beta} A^{\xi} \)
 \end{equation}
 
 *** replace index that doesn’t exist
 \begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu, \nu, \xi \rightarrow \alpha, \beta, \chi \rightarrow 
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \( \mu, \nu, \xi \rightarrow \alpha, \beta, \chi \) \rightarrow 
 \(4 X \partial_{\alpha}\partial_{\beta}h^{\alpha \beta} +Y \partial_{\beta}h^{\alpha \beta} A^{\gamma} \)
 \end{equation}
 
 *** what if it’s not there but it’s one of the replacement indices
 \begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \mu, \nu, \alpha \rightarrow \alpha, \beta, \xi \rightarrow 
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \( \mu, \nu, \alpha \rightarrow \alpha, \beta, \xi \) \rightarrow 
 \(4 X \partial_{\alpha}\partial_{\beta}h^{\alpha \beta} +Y \partial_{\beta}h^{\alpha \beta} A^{\gamma} \)
 \end{equation}
 
@@ -658,29 +658,336 @@ Basic case:\\
 
 %%%
 
+{\color{blue}
+
 \subsection{replace terms}
 
-Basic case:
+\subsubsection{direct replacement, tensor $\rightarrow$ tensor}
 
-*** direct replacement
+\begin{itemize}
+
+\item{replacing a tensor on its own}
+
+Starting with the equation
 \begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , A^{\gamma} \rightarrow B^{\gamma} \rightarrow  
-\(4 X \partial_{\mu}\partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} B^{\gamma} \)
+A^{\alpha \gamma} +  A^{\gamma}  + C^{} 
 \end{equation}
+
+replacing $ A^{\gamma} $ with $ B^{\gamma} $
+\begin{equation}
+\( A^{\alpha \gamma} + B^{\gamma} + C^{} \)
+\end{equation}
+
+
+\item{replacing a tensor that is multiplied by other elements}
+
+Starting with the equation
+\begin{equation}
+4 X \partial_{\mu} \partial_{\nu} h^{\mu \nu} B^{\alpha \gamma} +Y \partial_{\nu} h^{\alpha \nu} A^{\gamma}
+\end{equation}
+
+replacing $ A^{\gamma} $ with $ B^{\gamma} $
+\begin{equation}
+\(4 X \partial_{\mu} \partial_{\nu} h^{\mu \nu} B^{\alpha \gamma} +Y \partial_{\nu} h^{\alpha \nu} B^{\gamma} \)
+\end{equation}
+
+
+\item{replacing a tensor that has partial derivatives}
+
+\begin{itemize}
+
+\item{Replace with just a tensor}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ B^{\gamma}_{\gamma} $
+\begin{equation}
+\( B_{\gamma}^{\gamma} +\frac{3}{4} Y \)
+\end{equation}
+
+\item{Replace with a partial and tensor}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ \partial_{\gamma}B^{\gamma} $
+\begin{equation}
+\( \partial_{\gamma} B^{\gamma} +\frac{3}{4} Y \)
+\end{equation}
+
+\item{Includes a term that shouldn't be replaced}\\
+
+Starting with the equation
+\begin{equation}
+\(\partial_{\mu} \partial_{\nu} h^{\mu \nu} \) \(\partial_{\xi} \partial_{\beta} h^{\chi \beta} \)
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ \partial_{\gamma}B^{\gamma} $
+\begin{equation}
+\( \partial_{\gamma} B^{\gamma} \)\( \partial_{\xi} \partial_{\beta} h^{\chi \beta} \)
+\end{equation}
+\end{itemize}
+
+\item{replacing a tensor and some of its partial derivatives}
+
+\begin{itemize}
+{\color{red}
+
+\item{can replace either derivative}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu} $
+
+}
+
+\item{must replace the derivative with the sum}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\gamma} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu} $
+\begin{equation}
+\( \partial_{\gamma} B^{\mu} +\frac{3}{4} Y \)
+\end{equation}
+
+\item{must replace the derivative without the sum}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\gamma} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\gamma} h^{\mu \nu} $ with $ B^{\mu \nu}_{\gamma} $
+\begin{equation}
+\( \partial_{\nu} B_{\gamma}^{\mu \nu} +\frac{3}{4} Y \)
+\end{equation}
+
+
+{\color{red}
+\item{replacing a number of derivatives}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\gamma} \partial_{\nu} \partial^{\epsilon}  h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\nu} \partial^{\epsilon} h^{\mu \nu} $ with $ B^{\mu \epsilon} $
+
+
+
+\item{including square}\\
+
+Starting with the equation
+\begin{equation}
+\partial_{\gamma} \partial_{\nu} \partial^{\epsilon} \square h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $  \square h^{\mu \nu} $ with $ B^{\mu \epsilon} $
+
+}
+\end{itemize}
+
+
+\item{replacing a tensor that has partial derivatives and is multiplied by other elements}
+
+
+Starting with the equation
+\begin{equation}
+A^{\zeta} \partial_{\mu} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu}_{\mu} $
+\begin{equation}
+A^{\zeta} \square M_{\zeta} B_{\mu}^{\mu}
+\end{equation}
+
+\item{replacing a tensor and some of its partial derivatives when it is multiplied by other elements}
+\begin{itemize}
+
+{\color{red}
+
+\item{can replace either derivative}\\
+
+Starting with the equation
+\begin{equation}
+A^{\zeta} \partial_{\mu} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}
+\end{equation}
+
+replacing $ \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu} $
+
+}
+
+\item{must replace the derivative with the sum}\\
+
+Starting with the equation
+\begin{equation}
+A^{\zeta} \partial_{\gamma} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}
+\end{equation}
+
+replacing $ \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu} $
+\begin{equation}
+A^{\zeta} \square M_{\zeta} \partial_{\gamma} B^{\mu}
+\end{equation}
+
+
+\item{must replace the derivative without the sum}\\
+
+Starting with the equation
+\begin{equation}
+A^{\zeta} \partial_{\gamma} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}
+\end{equation}
+
+replacing $ \partial_{\gamma} h^{\mu \nu} $ with $ B^{\mu \nu}_{\gamma} $
+\begin{equation}
+A^{\zeta} \square M_{\zeta} \partial_{\nu} B_{\gamma}^{\mu \nu}
+\end{equation}
+
+
+\end{itemize}
+
+\item{replacing a tensor in a multgroup with derivatives}
+
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial^{\gamma}\(A^{\zeta} \partial_{\gamma} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}\)
+\end{equation}
+
+replacing $ h^{\mu \nu} $ with $ B^{\mu \nu} $
+\begin{equation}
+\partial_{\mu} \partial^{\gamma} \( A^{\zeta} \square M_{\zeta} \partial_{\gamma} \partial_{\nu} B^{\mu \nu} \)
+\end{equation}
+
+\end{itemize}
+
+\subsubsection{direct replacement, tensor $\rightarrow$ sum}
+
+\begin{itemize}
+
+
+
+\item{replacing just a tensor}
+
+Starting with the equation
+\begin{equation}
+A^{\alpha \gamma} +  A^{\gamma}  + C^{} 
+\end{equation}
+
+replacing $ A^{\gamma} $ with $ B^{\gamma} + 8fG^{\gamma} $
+\begin{equation}
+\( A^{\alpha \gamma} + C^{} \)+\( B^{\gamma} +8 f G^{\gamma} \)
+\end{equation}
+
+
+\item{replacing a tensor that is multiplied by other elements}
+
+{\color{red}
+Starting with the equation
+\begin{equation}
+4 X \partial_{\mu} \partial_{\nu} h^{\mu \nu} B^{\alpha \gamma} +Y \partial_{\nu} h^{\alpha \nu} A^{\gamma}
+\end{equation}
+
+replacing $ A^{\gamma} $ with $ B^{\gamma} + 8fG^{\gamma} $
+\begin{verbatim}
+\begin{equation}
+\(4 X B^{\alpha \gamm} \partial_{\mu} \partial_{\nu} h^{\mu \nu} a^{} \)+Y \partial_{\nu} h^{\alpha \nu} \( B^{\gamma} +8 f G^{\gamma} \)
+\end{equation}
+\end{verbatim}
+}
+\item{replacing a tensor that has partial derivatives}
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ \partial_{\gamma} B^{\gamma} + 5 + G^{\mu}_{\mu} $
+\begin{equation}
+\(\frac{3}{4} Y \)+\( \partial_{\gamma} B^{\gamma} +5 + G_{\mu}^{\mu} \)
+\end{equation}
+
+
+\item{replacing a tensor and some of its partial derivatives}
+
+
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial_{\nu} h^{\mu \nu} + \frac{3}{4} Y
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ B^{\gamma}_{\gamma} + \frac{5}{4}V $
+\begin{equation}
+\(\frac{3}{4} Y \)+\( B_{\gamma}^{\gamma} +\frac{5}{4} V \)
+\end{equation}
+
+
+\item{replacing a tensor that has partial derivatives and is multiplied by other elements}
+
+Starting with the equation
+\begin{equation}
+A^{\zeta} \partial_{\mu} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}
+\end{equation}
+
+replacing $ \partial_{\mu} \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu}_{\mu} + 16\square B^{} $
+\begin{equation}
+A^{\zeta} \square M_{\zeta} \( B_{\mu}^{\mu} +16 \square B^{} \)
+\end{equation}
+
+\item{ replacing a tensor and some of its partial derivatives when it is multiplied by other elements}
+
+Starting with the equation
+\begin{equation}
+A^{\zeta} \partial_{\gamma} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}
+\end{equation}
+
+replacing $ \partial_{\nu} h^{\mu \nu} $ with $ B^{\mu} + C^{\mu} $
+
+\begin{equation}
+A^{\zeta} \square M_{\zeta} \partial_{\gamma} \( B^{\mu} + C^{\mu} \)
+\end{equation}
+
+
+{\color{red}
+\item{replacing a tensor in a multgroup with derivatives}
+
+Starting with the equation
+\begin{equation}
+\partial_{\mu} \partial^{\gamma}\(A^{\zeta} \partial_{\gamma} \partial_{\nu} h^{\mu \nu} \square M_{\zeta}\)
+\end{equation}
+
+replacing $ h^{\mu \nu} $ with $ B^{\mu \nu} + C^{\mu \nu} $
+\begin{equation}
+\partial_{\mu} \partial^{\gamma} \(\)+ A^{\zeta} \square M_{\zeta} \partial_{\gamma} \partial_{\nu} \( B^{\mu \nu} + C^{\mu \nu} \)
+\end{equation}
+}
+
+\end{itemize}
 
 {\color{red}
 *** more complicated replacement term
 \begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} ,  \partial_{\nu}h^{\mu \nu} \rightarrow \partial_{\gamma} V^{\mu \gamma}  ISSUE:" Equation: indices to replace do not match in length!
-Please email jbrucero@uwo.ca for if you think this is a bug"
-\end{equation}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} B^{\alpha \gamma} +Y \partial_{\nu}h^{\alpha \nu} A^{\gamma} , \; \; \; \; \;
+ \partial_{\nu}h^{\alpha \nu} \rightarrow \partial_{\zeta} V^{\alpha \zeta} 
+  \end{equation}
 }
 
 {\color{red}
-\begin{equation}
-4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} ,  \partial_{\nu}h^{\mu \nu} \rightarrow  V^{\mu} \rightarrow ISSUE:" Equation: indices to replace do not match in length!
-Please email jbrucero@uwo.ca for if you think this is a bug"
-\end{equation}
+\begin{multline}
+4X \partial_{\mu} \partial_{\nu}h^{\mu \nu} +Y \partial_{\nu}h^{\mu \nu} A^{\gamma} , \\
+ \partial_{\nu}h^{\mu \nu} \rightarrow  V^{\mu} 
+\end{multline}
 }
 
 

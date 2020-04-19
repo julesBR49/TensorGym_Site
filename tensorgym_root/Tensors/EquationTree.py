@@ -210,12 +210,18 @@ class EquationTree:
                             node.setLeft(None)
                             node.setRight(None)
 
+    # summ is the summation object the tensor is being replaced in, jfk is the tensor to replace, lbj the tensor to replace it with
     def replaceOnlyTensor(self, summ, jfk, lbj, typae):
+        print("jfk: ", jfk)
+        print("lbj: ", lbj)
+        print("summ: ", summ)
         i = 0
         while i < len(summ):
             pres = summ[i]
+            print("pres: ", pres)
             if typae == 'ten':
                 toAssassinate = pres.findTensor(jfk)
+                print("toAssassinate: ", toAssassinate)
             elif typae == 'var':
                 toAssassinate = pres.findVariation(jfk)
             else:
@@ -225,11 +231,14 @@ class EquationTree:
                     pres.removeTensorRef(toAssassinate)
                 else:
                     pres.removeVarRef(toAssassinate)
+
+                print("after removal: ", pres)
                 lbjNEW = copy.deepcopy(lbj)
                 jfkNEW = copy.deepcopy(jfk)
-                kittens = copy.deepcopy(toAssassinate.getPartials())
-                cats = list()
+                kittens = copy.deepcopy(toAssassinate.getPartials()) # The partials that weren't in the replacement term
+                cats = list()   # The list of partials that match up
                 k = 0
+                # find the partials that match up
                 while k < len(kittens):
                     partial = kittens[k]
                     inJFK = False
@@ -249,7 +258,13 @@ class EquationTree:
                         k += 1
                 #jfkNEW.addPartialList(kittens)
                 #lbjNEW.addPartialList(kittens)
+                print()
+                print("Cats: ", cats)
+                print("Kittens: ", kittens)
                 toAssassinate.setPartials(cats)
+                # Change indices to match the term to be replaced
+                print("jfkNEW: ", jfkNEW)
+                print("toAssassinate: ", toAssassinate)
                 lbjNEW.changeIndicesTenH(jfkNEW, toAssassinate)
                 lbjNEW.addPartialList(kittens)
                 if typae == 'ten':
@@ -332,6 +347,8 @@ class EquationTree:
                 i += -1
 
     def replaceSum(self, node, ogSumsInit, newSumsInit):
+        print("ogSumsInit: ", ogSumsInit)
+        print("newSumsInit: ", newSumsInit)
         if not node.isSum():
             return
         sums = node.getElement().getSums()
@@ -469,8 +486,10 @@ class EquationTree:
                 for newSum in newAdd:
                     sums.insert(i, newSum)
                     i += 1
-
+    # ogSum and newSum are summation objects
     def replace(self, node, ogSum, newSum):
+        print("ogSum: ", ogSum)
+        print("newSum: ", newSum)
         if node is not None:
             self.replace(node.getRight(), ogSum, newSum)
             self.replace(node.getLeft(), ogSum, newSum)

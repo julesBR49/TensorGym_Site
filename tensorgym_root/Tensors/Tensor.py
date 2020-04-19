@@ -147,7 +147,7 @@ class Tensor:
                             #        sym.getUpInds()[d] = ind
                             #        sym.getDownInds()[d] = Index("\\%", 0)
                             #        partials[p].getIndex().changeHeight()
-                        #else:
+                        # else:
                         #    raise IndexException("Too many instances of the index " + repr(sym.getDownInds()[d].getSymbol()))
         self.rank = (len(sym.getIndices())-2*self.numTSums-2*self.numPTSums)
         self.numPartials = len(self.partials)
@@ -296,11 +296,15 @@ class Tensor:
         return pointer
 
     def changeIndicesTenH(self, fromTen, toTen):
+        print("fromTen: ", fromTen)
+        print("toTen: ", toTen)
         fromTenList = fromTen.getFullIndices()
         toTenList = toTen.getFullIndices()
         self.changeIndicesListH(fromTenList, toTenList)
 
     def changeIndicesListH(self, fromList, toList):
+        print("fromList: ", fromList)
+        print("toList: ", toList)
         if len(fromList) != len(toList):
             raise TypeError("indices to replace do not match in length!")
         for i in range(len(fromList)):
@@ -329,6 +333,8 @@ class Tensor:
     ## patternEq checks if
     #
     def patternEqNotAllPs(self, other):
+        print("self: ", self)
+        print("other: ", other)
         if not (self.getSymbol() == other.getSymbol()):
             return False
         if len(self.getPartials()) < len(other.getPartials()):

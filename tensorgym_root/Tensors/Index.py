@@ -129,6 +129,8 @@ class Index:
         return False
 
     def patternEqH(self, other):
+        print("self sum type: ", self.getSumType())
+        print("other sum type: ", other.getSumType())
         if self.getSumType() != other.getSumType():
             return False
         return True

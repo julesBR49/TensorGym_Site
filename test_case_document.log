@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  12 APR 2020 19:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  18 APR 2020 21:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -437,37 +437,80 @@ Underfull \hbox (badness 10000) in paragraph at lines 630--631
 
  []
 
-
-Overfull \hbox (184.44434pt too wide) detected at line 676
-\OT1/cmr/m/n/10 4\OML/cmm/m/it/10 X@[]@[]h[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10
- Y@[]h[]A[]; @[]h[] \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 @[]V[]ISSUE \OT1/cmr/m/
-n/10 : "\OML/cmm/m/it/10 Equation \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 indicestor
-eplacedonotmatchinlength\OT1/cmr/m/n/10 !\OML/cmm/m/it/10 Pleaseemailjbrucero\O
-T1/cmr/m/n/10 @\OML/cmm/m/it/10 uwo:caforifyouthinkthisisabug\OT1/cmr/m/n/10 "
- []
-
-
-Overfull \hbox (184.92859pt too wide) detected at line 683
-\OT1/cmr/m/n/10 4\OML/cmm/m/it/10 X@[]@[]h[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10
- Y@[]h[]A[]; @[]h[] \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 V[] \OMS/cmsy/m/n/10 ! 
-\OML/cmm/m/it/10 ISSUE \OT1/cmr/m/n/10 : "\OML/cmm/m/it/10 Equation \OT1/cmr/m/
-n/10 : \OML/cmm/m/it/10 indicestoreplacedonotmatchinlength\OT1/cmr/m/n/10 !\OML
-/cmm/m/it/10 Pleaseemailjbrucero\OT1/cmr/m/n/10 @\OML/cmm/m/it/10 uwo:caforifyo
-uthinkthisisabug\OT1/cmr/m/n/10 "
- []
-
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 687--688
+Underfull \hbox (badness 10000) in paragraph at lines 699--700
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 735--736
+Underfull \hbox (badness 10000) in paragraph at lines 711--712
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 723--724
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 741--742
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 752--753
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--765
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 778--779
 
  []
 
 [8]
-Overfull \hbox (186.21283pt too wide) detected at line 813
+Underfull \hbox (badness 10000) in paragraph at lines 789--790
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 820--821
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 831--832
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 844--845
+
+ []
+
+[9]
+Overfull \hbox (238.35376pt too wide) in paragraph at lines 906--906
+ []\OT1/cmtt/m/n/10 \(4 X B^{\alpha \gamm} \partial_{\mu} \partial_{\nu} h^{\mu
+ \nu} a^{} \)+Y \partial_{\nu} h^{\alpha \nu} \( B^{\gamma} +8 f G^{\gamma} \)[
+] 
+ []
+
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 994--995
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1042--1043
+
+ []
+
+[11]
+Overfull \hbox (186.21283pt too wide) detected at line 1120
 \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 B@[]A[] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 
 V[]@[]A[] \OMS/cmsy/m/n/10 ! \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Ithinkthisiswhat
 Iwantbutshoulddoublecheck=seeifanimprovementcombinethesetoo \OMS/cmsy/m/n/10 ! 
@@ -475,51 +518,57 @@ Iwantbutshoulddoublecheck=seeifanimprovementcombinethesetoo \OMS/cmsy/m/n/10 !
 ] \OT1/cmr/m/n/10 + []\OML/cmm/m/it/10 V[]@[]A[][]
  []
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 903--904
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 1210--1211
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 910--911
+Underfull \hbox (badness 10000) in paragraph at lines 1217--1218
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 916--918
+Underfull \hbox (badness 10000) in paragraph at lines 1223--1225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 920--921
+Underfull \hbox (badness 10000) in paragraph at lines 1227--1228
 
  []
 
-[10] (./test_case_document.aux) ) 
+[13] (./test_case_document.aux) )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 661 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 4854 strings out of 492616
- 64744 string characters out of 6129482
+ 4857 strings out of 492616
+ 64788 string characters out of 6129482
  162353 words of memory out of 5000000
- 8737 multiletter control sequences out of 15000+600000
- 11363 words of font info for 45 fonts, out of 8000000 for 9000
+ 8739 multiletter control sequences out of 15000+600000
+ 11671 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 27i,11n,35p,313b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msam10.pfb>
-Output written on test_case_document.pdf (10 pages, 156592 bytes).
+ 27i,11n,35p,313b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
+>
+Output written on test_case_document.pdf (13 pages, 182837 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 57 compressed objects within 1 object stream
+ 99 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
