@@ -1,81 +1,118 @@
 {% extends "tensorgym/base.html" %} {% block content %}
+<div class="initial">
 <h1>TensorGym</h1>
+</div>
 
 <form action="/about/" method="post">
     {% csrf_token %}
-    <p><input id="instructions" type="submit" value="Instructions">
+    <div class="initial">
+       
+        <input id="instructions" type="submit" value="Instructions">
+        
+    </div>
 </form>
 
-<h2>Input</h2>
 
 <form action="/" method="post">
     {% csrf_token %}
-    <input type="button" value="Reset" onClick="this.form.reset()" />
-    <p><label for="equation">Input Equation </label> {{ form.equation }}
-    </p>
+    <!-- <h2>Input    &nbsp  &nbsp  &nbsp  &nbsp      &nbsp  &nbsp  &nbsp  &nbsp  <input type="button" value="clear" onClick="this.form.reset()" /></h2> -->
+    <p></p>
+    <div class="initial">
+       
+        <h2> 
+            Input Equation &nbsp &nbsp   &nbsp 
+            &nbsp  &nbsp  &nbsp  <input type="button" value="clear" onClick="this.form.reset()" />
+
+        </h2> 
+    
+        {{ form.equation }}
+    </div>
     <p>
         {{ form.initial_eq }}
         <label>include initial equation in output?</label>
         <br>{{ form.text_statements }}
         <label>include short description in output?</label>
         <br><br>
-        <label>(optional) comma-separated list of semmetric tensor symbols (eg. h, T)</label> {{ form.symmetric_tensors }}
+        <label>(optional) comma-separated list of symmetric tensor symbols (eg. h, T) &nbsp</label> {{ form.symmetric_tensors }}
     </p>
-    <h3>
-        Multiply
-    </h3>
-    <p>
-        {{ form.foil }}
-        <label for="foil">FOIL out terms, distributing derivatives when necessary (recommended)</label>
-        <br>{{ form.distribute_partials }}
-        <label for="foil">distribute partial derivatives</label>
-        <br>{{ form.foil_no_distribute }}
-        <label for="foil">FOIL out terms without distributing derivatives</label>
-    </p>
-    <h3>
-        Contract
-    </h3>
+    <div class="inner">
+        <h3>
+            Multiply
+        </h3>
+        <p>
+            {{ form.foil }}
+            <label for="foil">FOIL out terms, distributing derivatives when necessary (recommended)</label>
+            <br>{{ form.distribute_partials }}
+            <label for="foil">distribute partial derivatives</label>
+            <br>{{ form.foil_no_distribute }}
+            <label for="foil">FOIL out terms without distributing derivatives</label>
+        </p>
+    </div >
+    <p></p>
+    <div class="inner">
+        <h3>
+            Contract
+        </h3>
+        <p>
+            {{ form.contract_both }}
+            <label>contract etas and deltas</label>
+            <br>{{ form.contract_deltas }}
+            <label>contract only deltas</label>
+            <br>{{ form.contract_etas }}
+            <label>contract only etas</label>
+        </p>
 
-    {{ form.contract_both }}
-    <label>contract etas and deltas</label>
-    <br>{{ form.contract_deltas }}
-    <label>contract only deltas</label>
-    <br>{{ form.contract_etas }}
-    <label>contract only etas</label>
-    <h3>
-        Factor
-    </h3>
+    </div>  
+    <p></p>
+    <div class="inner">
+        <h3>
+            Factor
+        </h3>
+        <p>
+            {{ form.factor_gcf }}
+            <label>factor out GCF</label>
+            <br>{{ form.factor_term }}
+            <label>factor out user specified term</label>
+            <br><label> &nbsp &nbsp &nbsp &nbsp term to factor</label> {{ form.term_to_factor }}
+        </p>
+    </div>
+    <p></p>
+    <div class="inner">
+        <h3>
+            Replace
+        </h3>
 
-    {{ form.factor_gcf }}
-    <label>factor out GCF</label>
-    <br>{{ form.factor_term }}
-    <label>factor out user specified term</label>
-    <br><label> term to factor</label> {{ form.term_to_factor }}
-    <h3>
-        Replace
-    </h3>
-
-    {{ form.replace_indices }}
-    <label>replace indices</label>
-    <br> <label>indices to replace, list: </label> {{ form.indices_to_replace }}<label>replacement indices, list: </label> {{ form.replacement_indices }}
-    <br><br>{{ form.replace_terms }}
-    <label>replace terms</label>
-    <br> <label>term to replace: </label> {{ form.term_to_replace }} <label>replacement term: </label> {{ form.replacement_term }}
-    <h3>
-        Sort
-    </h3>
-
-    {{ form.combine_like_terms_num }}
-    <label>combine like terms differing only by a numerical factor</label>
-    <br>{{ form.combine_like_terms }}
-    <label>combine like terms differing by any (numerical or symbolic) coefficient</label>
-    <br>{{ form.sort_each }}
-    <label>sort the tensors in each term by number of derivatives (least to greatest)</label>
-    <br>{{ form.sort_terms }}
-    <label>sort terms by number of derivatives (least to greatest)</label>
-
-
-    <p><input id="compute" type="submit" value="Compute">
+        <p>
+            {{ form.replace_indices }}
+            <label>replace indices</label>
+            
+            <br> <label>&nbsp &nbsp &nbsp &nbsp indices to replace, list: </label> {{ form.indices_to_replace }}<label> &nbsp &nbsp &nbsp replacement indices, list: </label> {{ form.replacement_indices }}
+       
+            <br><br>{{ form.replace_terms }}
+            <label>replace terms</label>
+       
+            <br> <label>&nbsp &nbsp &nbsp &nbsp term to replace: </label> {{ form.term_to_replace }} <label> &nbsp &nbsp &nbsp replacement term: </label> {{ form.replacement_term }}
+     
+        </p>
+    </div>
+    <p></p>
+    <div class="inner">
+        <h3>
+            Sort
+        </h3>
+        <p>
+            {{ form.combine_like_terms_num }}
+            <label>combine like terms differing only by a numerical factor</label>
+            <br>{{ form.combine_like_terms }}
+            <label>combine like terms differing by any (numerical or symbolic) coefficient</label>
+            <br>{{ form.sort_each }}
+            <label>sort the tensors in each term by number of derivatives (least to greatest)</label>
+            <br>{{ form.sort_terms }}
+            <label>sort terms by number of derivatives (least to greatest)</label>
+        </p>
+    </div>
+    
+    <p><input class="compute" id="compute" type="submit" value="Compute">
         <!-- <label for="output"> Output </label> {{ form.output_equation }} -->
     </p>
 </form>

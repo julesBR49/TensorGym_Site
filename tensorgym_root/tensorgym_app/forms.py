@@ -4,7 +4,7 @@ import traceback
 
 class EquationForm(forms.Form):
     # input
-    equation = forms.CharField(label='Equation', help_text='Input Equation')
+    equation = forms.CharField(label='Equation', help_text='Input Equation', widget=forms.Textarea(attrs={'cols': 86, 'rows': 7}))
 
     text_statements = forms.BooleanField(required=False)
     initial_eq = forms.BooleanField(required=False)
@@ -77,7 +77,7 @@ class EquationForm(forms.Form):
             if self.contract_both:
                 base_equation.contract(base_equation.getTree().getRoot())
                 if self.text_statements:
-                    self.output_equation += "contracting etas and deltas "
+                    self.output_equation += "contracting etas and deltas \n"
                 self.output_equation += repr(base_equation)
                 self.output_equation += "\n" + "\n"
             if self.contract_etas:
@@ -109,7 +109,7 @@ class EquationForm(forms.Form):
             if self.replace_indices:
                 base_equation.replaceIndices(self.indices_to_replace, self.replacement_indices)
                 if self.text_statements:
-                    self.output_equation += "replacing indices $ " + self.indices_to_replace + " $ with indices $ " + self.replacement_indices_str + " $ \n"
+                    self.output_equation += "replacing indices $ " + self.indices_to_replace + " $ with indices $ " + self.replacement_indices + " $ \n"
                 self.output_equation += repr(base_equation)
                 self.output_equation += "\n" + "\n"
 
