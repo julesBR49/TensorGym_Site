@@ -25,7 +25,7 @@ SECRET_KEY = 'zk0wp_6v*42%-rb&&3@x@xmj55)f@6agys)b9)zlqr=rt+wkwk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["tensorgym.pythonanywhere.com"]
 
 
 # Application definition
