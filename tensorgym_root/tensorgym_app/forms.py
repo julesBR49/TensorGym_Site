@@ -77,19 +77,19 @@ class EquationForm(forms.Form):
             if self.contract_both:
                 base_equation.contract(base_equation.getTree().getRoot())
                 if self.text_statements:
-                    self.output_equation += "contracting etas and deltas \n"
+                    self.output_equation += "contracting Minkowski metrics and Kronecker deltas \n"
                 self.output_equation += repr(base_equation)
                 self.output_equation += "\n" + "\n"
             if self.contract_etas:
                 base_equation.contract(base_equation.getTree().getRoot(), 'eta')
                 if self.text_statements:
-                    self.output_equation += "contracting etas \n"
+                    self.output_equation += "contracting Minkowski metrics \n"
                 self.output_equation += repr(base_equation)
                 self.output_equation += "\n" + "\n"
             if self.contract_deltas:
                 base_equation.contract(base_equation.getTree().getRoot(), 'delta')
                 if self.text_statements:
-                    self.output_equation += "contracting deltas \n"
+                    self.output_equation += "contracting Kronecker deltas \n"
                 self.output_equation += repr(base_equation)
                 self.output_equation += "\n" + "\n"
         # FACTOR
