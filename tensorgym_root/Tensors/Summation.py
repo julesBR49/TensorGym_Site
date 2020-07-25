@@ -152,7 +152,7 @@ class Summation:
 
     def __repr__(self):
         self.remZeroTerms()
-        if len(self.summation) > 1: #or (len(self.summation) == 1 and self.summation[0].getSign() == "-"):
+        if len(self.summation) > 1 or self.hasPartials(): #or (len(self.summation) == 1 and self.summation[0].getSign() == "-"):
             self.setBrackets(True)
         if (len(self.summation) > 0) and self.brackets and (self.summation[0].getSign() == "+"):
             self.summation[0].setShowSign(False)
