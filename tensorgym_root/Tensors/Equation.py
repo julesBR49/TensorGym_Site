@@ -432,11 +432,21 @@ class Equation:
                 test = endSymb - 1
                 while test >= 0 and not(strx[test] in self.getDel()):
                     test += -1
+                    # TODO: test this section!!
+                if strx[test] == "}": # for cases such as \bar{\TensorSymbol}
+                    print("} in string")
+                    test = self.skipBrackets(strx, test, "-")
+                    test += -1 # move past the opeing bracket - {
+                while test >= 0 and not(strx[test] in self.getDel()):
+                    test += -1
+
                 if strx[test] == "\\":  # if we first ran into \\, from test to endSymb must all be tensor symbol
                     begSymb = test  # first index of tensor symbol
                 else:
                     begSymb = endSymb - 1  # if not \\, assume tensor Symbol is only one character
                 tensorSymbol = strx[begSymb:endSymb]  # save the symbol part of the tensor
+                print(tensorSymbol)
+                print()
                 strx = strx[0:begSymb] + strx[endTensor:len(strx)]  # cut both symbol and indices from strx
                 partialsT = list()  # holds and partial objects attached to the tensor
                 # TREAT ANY PARTIAL PRECEDING A TENSOR AS ATTACHED TO THAT TENSOR
