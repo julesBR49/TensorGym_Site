@@ -671,6 +671,8 @@ class MultGroup:
                         elif (not done) and second.sumsWith(dindex):
                             self.deltas[d].getSym().changeIndex(dindex, first)
                             done = True
+
+
             for t in range(len(self.tensors)):
                 if not done:
                     for tp in range(len(self.tensors[t].getPartials())):
@@ -682,10 +684,10 @@ class MultGroup:
                             done = True
                     for tindex in self.tensors[t].getIndices():
                         if (not done) and first.sumsWith(tindex):
-                            self.tensors[t].getSym().changeIndex(tindex, second)
+                            self.tensors[t].getSym().changeIndex(tindex, second, self.tensors[t].getIsSymmetric())
                             done = True
                         elif (not done) and second.sumsWith(tindex):
-                            self.tensors[t].getSym().changeIndex(tindex, first)
+                            self.tensors[t].getSym().changeIndex(tindex, first, self.tensors[t].getIsSymmetric())
                             done = True
             for p in range(len(self.partials)):  # deal with partials
                 if not done and first.sumsWith(self.partials[p].getIndex()):

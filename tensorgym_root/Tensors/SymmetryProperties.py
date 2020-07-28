@@ -44,7 +44,7 @@ class SymmetryProperties:
                 for el in upInds:
                     if el != "":
                         self.indices.append(Index(el, 1))
-            if "\\ " in down:
+            while "\\ " in down:
                 down = down.replace("\\ ", "\\%")
             down = ''.join(down.split())
             if "\\" in down:
@@ -69,10 +69,77 @@ class SymmetryProperties:
     def setSymmetric(self, bool):
         self.isSymmetric = bool
 
-    def changeIndex(self, oldInd, newInd):
-        for i in range(len(self.indices)):
-            if self.indices[i].basicEqualsH(oldInd):
-                self.indices[i] = newInd
+    def changeIndex(self, oldInd, newInd, isSym = False):
+        if oldInd.getHeight() == newInd.getHeight() or isSym:
+            for i in range(len(self.indices)):
+                if self.indices[i].basicEqualsH(oldInd):
+                    self.indices[i] = newInd
+        else: # changing the height as well as the symbol
+            upInds = self.getUpInds()
+            downInds = self.getDownInds()
+            position = -1
+            if oldInd.getHeight() == 0: # check in downInds
+                print("downInds")
+                for i in range(len(downInds)):
+                    if downInds[i].basicEqualsH(oldInd):
+                        position = i
+                if position != -1: # found
+                    print("found")
+                    print(downInds[position])
+                    downInds[position] = Index("\\%", 0)
+                    print("after:", downInds[position])
+                    # if there are only space indices in downInds now, replace with empty list
+                    onlySpace = True
+                    for ind in downInds:
+                        if ind.getIndex() != "\\ ":
+                            onlySpace = False
+                    if onlySpace:
+                        print("only space")
+                        downInds = list()
+                        
+                    if len(upInds) > position:
+                        if upInds[position].getIndex() != "\\ ":
+                            print("WARNING: non-symmetric tensor with overlapping indices!!")
+                            #TODO: log a warning
+                        upInds[position] = newInd
+                    else:
+                        while len(upInds) < position:
+                            upInds.append(Index("\\%", 1))
+                        upInds.append(newInd)
+                    print(upInds)
+                else:
+                    print("WARNING: index to change not found")
+
+            else: # check in upInds
+                print("upInds")
+                for i in range(len(upInds)):
+                    if upInds[i].basicEqualsH(oldInd):
+                        position = i
+                if position != -1: # found
+                    upInds[position] = Index("\\%", 0)
+                    # if there are only space indices in upInds now, replace with empty list
+                    onlySpace = True
+                    for ind in upInds:
+                        if ind.getIndex() != "\\ ":
+                            onlySpace = False
+                    if onlySpace:
+                        upInds = list()
+
+                    if len(downInds) > position:
+                        if downInds[position].getIndex() != "\\ ":
+                            print("WARNING: non-symmetric tensor with overlapping indices!!")
+                            #TODO: log a warning
+                        downInds[position] = newInd
+                    else:
+                        while len(downInds) < position:
+                            downInds.append(Index("\\%", 1))
+                        downInds.append(newInd)
+                else:
+                    print("WARNING: index to change not found")
+                # reinitialize indices with new up and down
+            self.indices = downInds + upInds
+
+
 
     def getUpInds(self):
         upInds = list()
@@ -111,7 +178,7 @@ class SymmetryProperties:
             leticia = max([u, d])
             if leticia < len(self.getNonEmptyIndices()):
                 retList += self.getNonEmptyIndices()
-            else:
+            else: # for case X^{\alpha}_{\ \alpha}
                 for i in range(max([u, d])):
                     if (i >= len(up)) or (up[i].getIndex() == "\\ " and i < len(down)):
                         retList.append(down[i])

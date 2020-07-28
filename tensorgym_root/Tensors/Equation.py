@@ -386,26 +386,28 @@ class Equation:
                 char += 1
         # **************************************************************
         # deal with deltas
-        strx = ' '.join(strx.split())  # reinitialize max one space condition
-        deltas = list()
-        while "\\delta" in strx:
-            beg = strx.find("\\delta")
-            indices = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+6))[0]
-            endDel = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+6))[1]
-            deltas.append(Delta(SymmetryProperties(indices)))
-            strx = strx[:beg] + strx[endDel:]
+        # strx = ' '.join(strx.split())  # reinitialize max one space condition
+        # deltas = list()
+        # while "\\delta" in strx:
+        #     beg = strx.find("\\delta")
+        #     indices = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+6))[0]
+        #     endDel = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+6))[1]
+        #     deltas.append(Delta(SymmetryProperties(indices)))
+        #     strx = strx[:beg] + strx[endDel:]
         # **************************************************************
         # deal with etas
-        strx = ' '.join(strx.split())  # reinitialize max one space condition
-        etas = list()
-        while "\\eta" in strx:
-            beg = strx.find("\\eta")
-            indices = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+4))[0]
-            endEta = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+4))[1]
-            etas.append(Eta(SymmetryProperties(indices)))
-            strx = strx[:beg] + strx[endEta:]
+        # strx = ' '.join(strx.split())  # reinitialize max one space condition
+        # etas = list()
+        # while "\\eta" in strx:
+        #     beg = strx.find("\\eta")
+        #     indices = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+4))[0]
+        #     endEta = self.dealWithTensorIndex(strx, self.movePastSpace(strx, beg+4))[1]
+        #     etas.append(Eta(SymmetryProperties(indices)))
+        #     strx = strx[:beg] + strx[endEta:]
 
         # **************************************************************
+        deltas = list()
+        etas = list()
         # deal with tensors
         strx = ' '.join(strx.split())  # reinitialize max one space condition
         tensors = list()
@@ -427,47 +429,50 @@ class Equation:
                 endTensor = self.dealWithTensorIndex(strx, pos)[1]  # first index after end of indices
                 indices = self.dealWithTensorIndex(strx, pos)[0]
                 endSymb = pos  # first index after the tensor symbol
-                if strx[endSymb-1] == " ":  # move back if space
-                    endSymb += -1
                 test = endSymb - 1
-                while test >= 0 and not(strx[test] in self.getDel()):
-                    test += -1
-                    # TODO: test this section!!
+                while strx[endSymb] == " ":  # move back if space
+                    endSymb += -1
+
+                # TODO: test this section!!
                 if strx[test] == "}": # for cases such as \bar{\TensorSymbol}
-                    print("} in string")
+                    print("} in string: '", strx, "', at position: ", test)
                     test = self.skipBrackets(strx, test, "-")
                     test += -1 # move past the opeing bracket - {
+
                 while test >= 0 and not(strx[test] in self.getDel()):
                     test += -1
-
                 if strx[test] == "\\":  # if we first ran into \\, from test to endSymb must all be tensor symbol
                     begSymb = test  # first index of tensor symbol
                 else:
                     begSymb = endSymb - 1  # if not \\, assume tensor Symbol is only one character
                 tensorSymbol = strx[begSymb:endSymb]  # save the symbol part of the tensor
-                print(tensorSymbol)
-                print()
+               
                 strx = strx[0:begSymb] + strx[endTensor:len(strx)]  # cut both symbol and indices from strx
-                partialsT = list()  # holds and partial objects attached to the tensor
-                # TREAT ANY PARTIAL PRECEDING A TENSOR AS ATTACHED TO THAT TENSOR
-                while "\\partial" in strx[:begSymb]:
-                    firstP = strx.find("\\partial")  # the index of the first partial attached to the tensor
-                    partialsT.append(self.dealWithPartial(strx, firstP)[0])
-                    lastP = self.dealWithPartial(strx, firstP)[1]+1
-                    strx = strx[:firstP] + strx[lastP:]  # remove partial information
-                    subtracted = lastP - firstP  # the length that has been removed from strx
-                    begSymb += -subtracted  # decrease begSymb so it still references the same (information) position in strx
-                while "\\square" in strx[:begSymb]:
-                    strx = strx.replace("\\square", "", 1)
-                    partDown = Partial(Index("\\square" + str(cassiopea), 0))
-                    partUp = Partial(Index("\\square" + str(cassiopea), 1))
-                    partDown.setSquarePartner(partUp)
-                    partUp.setSquarePartner(partDown)
-                    partialsT.append(partDown)
-                    partialsT.append(partUp)
-                    cassiopea += 1
-                    begSymb += -len("\\square")
-                tensors.append(Tensor(tensorSymbol, SymmetryProperties(indices), partialsT, "+", False, self.symTens))
+                if tensorSymbol == "\delta":
+                    deltas.append(Delta(SymmetryProperties(indices)))
+                elif tensorSymbol == "\eta":
+                    etas.append(Eta(SymmetryProperties(indices)))
+                else:
+                    partialsT = list()  # holds and partial objects attached to the tensor
+                    # TREAT ANY PARTIAL PRECEDING A TENSOR AS ATTACHED TO THAT TENSOR
+                    while "\\partial" in strx[:begSymb]:
+                        firstP = strx.find("\\partial")  # the index of the first partial attached to the tensor
+                        partialsT.append(self.dealWithPartial(strx, firstP)[0])
+                        lastP = self.dealWithPartial(strx, firstP)[1]+1
+                        strx = strx[:firstP] + strx[lastP:]  # remove partial information
+                        subtracted = lastP - firstP  # the length that has been removed from strx
+                        begSymb += -subtracted  # decrease begSymb so it still references the same (information) position in strx
+                    while "\\square" in strx[:begSymb]:
+                        strx = strx.replace("\\square", "", 1)
+                        partDown = Partial(Index("\\square" + str(cassiopea), 0))
+                        partUp = Partial(Index("\\square" + str(cassiopea), 1))
+                        partDown.setSquarePartner(partUp)
+                        partUp.setSquarePartner(partDown)
+                        partialsT.append(partDown)
+                        partialsT.append(partUp)
+                        cassiopea += 1
+                        begSymb += -len("\\square")
+                    tensors.append(Tensor(tensorSymbol, SymmetryProperties(indices), partialsT, "+", False, self.symTens))
                 place = begSymb
         strx = ' '.join(strx.split())  # reinitialize max one space condition
         strx = strx.replace("\\(\\)", "")  # get rid of any empty brackets
